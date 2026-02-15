@@ -1,0 +1,1492 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Display:wght@700;800;900&family=Cormorant+Garamond:wght@400;600&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* High-contrast, aggressive athletes theme */
+:root {
+    --athletes-bg: #060606;
+    --card-bg: #0b0b0b;
+    --muted: #b7b7b7;
+    --accent: #e10600;
+    --accent-2: #b00020;
+    --neon: #ff2a2a;
+    --story-warm: #f2c06b;
+    --glass: rgba(255,255,255,0.04);
+    --transition-fast: 0.25s ease;
+    --transition-slow: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+body.page-atletas {
+    background: var(--athletes-bg);
+    color: #ffffff;
+    font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+body.page-atletas::before,
+body.page-atletas::after {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.page-atletas::before {
+    background:
+        radial-gradient(40% 30% at 80% 85%, rgba(255, 255, 255, 0.14), transparent 60%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 10px),
+        repeating-linear-gradient(315deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 14px),
+        linear-gradient(120deg, rgba(255, 255, 255, 0.04), transparent 60%);
+    filter: blur(8px);
+    animation: plasma 8s ease-in-out infinite alternate;
+}
+
+body.page-atletas::after {
+    background-image: none;
+    mix-blend-mode: normal;
+    opacity: 0;
+    animation: none;
+}
+
+body.athlete-detail {
+    padding-top: 0;
+}
+
+body.athlete-detail::before,
+body.athlete-detail::after {
+    opacity: 0;
+    animation: none;
+}
+
+/* Collapse site hero on atletas pages so content appears immediately */
+.page-atletas .hero {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: transparent !important;
+}
+
+/* Ensure the fixed navbar does not cover page content: add top spacing equal to navbar height */
+.page-atletas main,
+.page-atletas .profile-wrap,
+.page-atletas .atletas-hero {
+    padding-top: calc(var(--nav-h,72px) + 24px); /* reserve space for fixed navbar */
+    position: relative;
+    z-index: 1;
+}
+
+.page-atletas main.athlete-profile {
+    padding-top: 0;
+}
+
+/* Reduce extra vertical padding so headings appear immediately below navbar */
+.page-atletas .atletas-hero { padding: calc(var(--nav-h,72px) + 8px) 5% 12px !important; }
+.page-atletas .profile-wrap { padding-top: calc(var(--nav-h,72px) + 16px) !important; padding-bottom: 40px !important; }
+
+/* Use scroll-margin so anchors land below navbar */
+.page-atletas .section-title,
+.page-atletas h1,
+.profile-card { scroll-margin-top: calc(var(--nav-h,72px) + 16px); }
+
+/* Give navbar a subtle dark background on atletas pages for contrast */
+.page-atletas .navbar {
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Navbar: highlight active link */
+.nav-menu a.active {
+    background: rgba(225,6,0,0.18);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(225,6,0,0.2);
+}
+
+/* Listing page layout */
+.atletas-hero {
+    padding: 64px 6% 36px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    isolation: isolate;
+    border-bottom: 4px solid var(--accent);
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.atletas-hero::before {
+    content: "";
+    position: absolute;
+    inset: -12% -6% -10% -6%;
+    background:
+        url("./media/AthleteImage.jpeg") center/cover no-repeat;
+    z-index: -2;
+    filter: saturate(1.35) contrast(1.25);
+    transform: skewY(-2deg);
+}
+
+.atletas-hero::after {
+    content: "";
+    position: absolute;
+    inset: -10% -6% -10% -6%;
+    background:
+        repeating-linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.06) 0px,
+            rgba(255, 255, 255, 0.06) 1px,
+            transparent 1px,
+            transparent 12px
+        );
+    opacity: 0.18;
+    mix-blend-mode: normal;
+    z-index: -1;
+    animation: streaks 6s linear infinite;
+}
+.page-atletas .atletas-hero h1 {
+    font-family: "Big Shoulders Display", "Impact", "Arial Black", sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #111111;
+    text-shadow: none;
+}
+.atletas-hero h1::after {
+    content: "";
+    display: block;
+    width: min(360px, 46vw);
+    height: 6px;
+    margin: 12px auto 0;
+    background: linear-gradient(90deg, #ff0000, rgba(255, 255, 255, 0.2));
+    clip-path: polygon(0 0, 94% 0, 100% 100%, 0 100%);
+}
+
+.hero-mission {
+    max-width: 60ch;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.6;
+}
+.atletas-roster {
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.atletas-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 4% 70px;
+    max-width: none;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .atletas-grid { gap: 20px; padding: 18px 4% 60px; }
+}
+@media (max-width: 600px) {
+    .atletas-grid { gap: 16px; padding: 16px 4% 50px; }
+    .atletas-hero h1 { font-size: 3rem; }
+    .hero-mission { font-size: 0.85rem; }
+}
+
+.atleta-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #000000;
+    background-image:
+        linear-gradient(#ff2a2a, #ff2a2a) top left/18px 2px,
+        linear-gradient(#ff2a2a, #ff2a2a) top left/2px 18px,
+        linear-gradient(#ff2a2a, #ff2a2a) top right/18px 2px,
+        linear-gradient(#ff2a2a, #ff2a2a) top right/2px 18px,
+        linear-gradient(#ff2a2a, #ff2a2a) bottom left/18px 2px,
+        linear-gradient(#ff2a2a, #ff2a2a) bottom left/2px 18px,
+        linear-gradient(#ff2a2a, #ff2a2a) bottom right/18px 2px,
+        linear-gradient(#ff2a2a, #ff2a2a) bottom right/2px 18px;
+    background-repeat: no-repeat;
+    border: 1px solid #111111;
+    min-height: 600px;
+    width: 100%;
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atleta-card:hover {
+    border-color: #ff2a2a;
+    box-shadow: 0 0 24px rgba(255, 42, 42, 0.45);
+}
+
+.atleta-media {
+    flex: 0 0 60%;
+    width: 60%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.atleta-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    pointer-events: none;
+}
+
+.atleta-image.is-gray {
+    filter: grayscale(100%) contrast(1.35) brightness(0.9);
+    -webkit-filter: grayscale(100%) contrast(1.35) brightness(0.9);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    will-change: opacity;
+}
+
+.atleta-card:hover .atleta-image.is-gray {
+    opacity: 0;
+}
+
+.atleta-panel {
+    flex: 0 0 40%;
+    background: #000000;
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    position: relative;
+    isolation: isolate;
+}
+
+.atleta-bg-id {
+    font-family: "Big Shoulders Display", "Impact", "Arial Black", sans-serif;
+    font-size: 3.5rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.2em;
+    align-self: flex-end;
+    margin-bottom: -12px;
+    line-height: 0.9;
+    z-index: 0;
+}
+
+.atleta-name {
+    font-family: "Big Shoulders Display", "Impact", "Arial Black", sans-serif;
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+.atleta-sponsor {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.95rem;
+    color: #ff2a2a;
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 1;
+}
+
+.atleta-origin {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    position: relative;
+    z-index: 1;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.origin-label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.origin-value {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.18em;
+}
+
+body.athlete-detail .atleta-origin {
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.atleta-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.18em;
+    order: 2;
+}
+
+.stat-value {
+    font-family: "Big Shoulders Display", "Impact", "Arial Black", sans-serif;
+    font-size: 2.2rem;
+    color: #ff2a2a;
+    letter-spacing: 0.12em;
+    order: 1;
+}
+
+.atleta-note {
+    margin-top: 6px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.95rem;
+    color: #ffffff;
+    letter-spacing: 0.12em;
+}
+
+@media (max-width: 900px) {
+    .atleta-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .atleta-media {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 420px;
+        transform: none;
+    }
+    .atleta-panel {
+        padding: 36px 28px 44px;
+    }
+}
+/* Profile page layout */
+.profile-wrap { padding: 50px 5% 80px; color: #fff; }
+.profile-card { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 420px 1fr; gap: 40px; }
+@media (max-width: 900px) { .profile-card { grid-template-columns: 1fr; } }
+
+.profile-photo-large {
+    width: 360px; height: 360px; margin: 0 auto; border-radius: 50%;
+    border: 6px solid var(--accent); background-size: cover; background-position: center;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+}
+
+.profile-info { background: var(--card-bg); padding: 28px; border-radius: 12px; }
+.profile-info h2 { margin: 0 0 6px 0; font-size: 2rem; }
+.profile-info p.team { color: var(--muted); margin-bottom: 16px; }
+
+.profile-section { padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.03); }
+.profile-section:first-of-type { border-top: none; }
+.profile-section h3 { margin: 0 0 8px 0; display:flex; gap:10px; align-items:center; font-size:1rem; }
+.profile-section p { color: #ddd; margin: 0; line-height:1.6 }
+
+/* small icon placeholder */
+.icon-dot { width:18px; height:18px; display:inline-block; border-radius:4px; background:var(--accent); }
+
+/* entrance animation */
+.reveal { opacity: 0; translate: 0 18px; scale: 0.98; transition: opacity 0.6s ease, translate 0.6s ease, scale 0.6s ease; }
+.reveal.in { opacity: 1; translate: 0 0; scale: 1; }
+
+/* kinetic background pulse */
+@keyframes plasma {
+    0% { transform: translateY(-2%) rotate(0deg); }
+    100% { transform: translateY(2%) rotate(2deg); }
+}
+
+@keyframes streaks {
+    0% { transform: translateX(-10%) translateY(0); }
+    100% { transform: translateX(10%) translateY(-6%); }
+}
+
+@keyframes drift {
+    0% { transform: translateX(-4%) translateY(0); }
+    100% { transform: translateX(4%) translateY(-2%); }
+}
+
+@keyframes slash {
+    0% { transform: translateX(-40%) skewX(-26deg); opacity: 0; }
+    30% { opacity: 0.55; }
+    60% { opacity: 0.2; }
+    100% { transform: translateX(140%) skewX(-26deg); opacity: 0; }
+}
+
+@keyframes grit {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    50% { background-position: -20px 10px, 0 0, 10px 0; }
+    100% { background-position: 10px -10px, 0 0, -10px 0; }
+}
+
+/* ============================================
+   ATHLETE PROFILE REDESIGN
+   ============================================ */
+.page-atletas .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, #e10600, #ff2a2a);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 2000;
+}
+
+.athlete-profile {
+    position: relative;
+    background: #050505;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.athlete-profile::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(60% 40% at 20% 10%, rgba(225, 6, 0, 0.18), transparent 60%),
+        radial-gradient(50% 40% at 80% 20%, rgba(255, 255, 255, 0.06), transparent 70%),
+        linear-gradient(120deg, rgba(12, 12, 12, 0.95), rgba(4, 4, 4, 0.95));
+    opacity: 0.6;
+    z-index: 0;
+    animation: mountain-drift 14s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.athlete-profile::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.15), transparent 60%),
+        radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.2), transparent 60%),
+        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255, 255, 255, 0.18), transparent 60%);
+    opacity: 0.35;
+    z-index: 0;
+    animation: dust-float 18s linear infinite;
+    pointer-events: none;
+}
+
+.athlete-hero {
+    position: relative;
+    min-height: 100vh;
+    margin-top: calc(-1 * var(--nav-h));
+    padding-top: var(--nav-h);
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    z-index: 1;
+    --tilt-x: 0px;
+    --tilt-y: 0px;
+    --parallax: 0px;
+}
+
+body.athlete-detail .athlete-hero {
+    margin-top: 0;
+}
+
+.athlete-hero-media {
+    position: absolute;
+    inset: -6%;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    transform: translate3d(var(--tilt-x), calc(var(--tilt-y) + var(--parallax, 0px)), 0) scale(1.08);
+    transition: transform 0.6s ease;
+    filter: saturate(1.1) contrast(1.05);
+    z-index: 0;
+}
+
+body.athlete-detail .athlete-hero-media {
+    inset: 0;
+    transform: none !important;
+    transition: none;
+    background-attachment: fixed;
+}
+
+.magazine-profile .athlete-hero {
+    min-height: 100vh;
+    background: #000;
+}
+
+.magazine-profile .athlete-hero-media {
+    background-position: top center;
+    inset: 0;
+    transform: none;
+    background-attachment: fixed;
+}
+
+.magazine-profile .athlete-hero::after {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, #000 100%);
+}
+
+.magazine-profile .athlete-hero:hover .athlete-hero-media {
+    transform: none;
+}
+
+.athlete-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(5, 5, 5, 0.05) 0%, rgba(5, 5, 5, 0.7) 55%, rgba(0, 0, 0, 0.98) 100%);
+    z-index: 1;
+}
+
+.athlete-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 5% 18vh;
+}
+
+.magazine-profile .athlete-hero-content {
+    padding: 0 6% 20vh;
+}
+
+.magazine-profile .athlete-name {
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    font-family: "Space Grotesk", "Big Shoulders Display", "Impact", sans-serif;
+}
+
+.magazine-profile .athlete-team {
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+}
+
+.athlete-identity {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.athlete-ring {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 6px;
+    display: grid;
+    place-items: center;
+}
+
+.athlete-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #e10600, rgba(255, 255, 255, 0.1) 20%, #ff2a2a 45%, rgba(255, 255, 255, 0.08) 70%, #e10600 100%);
+    animation: ring-spin 8s linear infinite;
+    filter: drop-shadow(0 0 12px rgba(225, 6, 0, 0.6));
+}
+
+.athlete-ring::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: ring-pulse 2.8s ease-in-out infinite;
+}
+
+.athlete-portrait {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.athlete-meta {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.athlete-kicker {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.athlete-name {
+    font-family: "Big Shoulders Display", "Impact", "Arial Black", sans-serif;
+    font-size: clamp(3.2rem, 6vw, 5.2rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.athlete-team {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 0;
+}
+
+.athlete-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.athlete-tags span {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.hero-stats {
+    position: absolute;
+    left: 50%;
+    bottom: 6vh;
+    transform: translateX(-50%);
+    width: min(1120px, 90%);
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 14px 18px;
+    backdrop-filter: blur(14px);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    z-index: 3;
+}
+
+.profile-grid {
+    position: relative;
+    z-index: 2;
+    padding: 70px 5% 90px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.info-card {
+    background: rgba(12, 12, 12, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+}
+
+.social-panel {
+    margin-top: 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(5, 5, 5, 0.6);
+    display: grid;
+    place-items: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+    fill: none;
+}
+
+.social-btn:hover {
+    border-color: rgba(255, 0, 0, 0.9);
+    box-shadow: 0 0 16px rgba(255, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.social-btn:hover svg {
+    stroke: #ff0000;
+}
+
+.social-rail {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 3;
+}
+
+.social-rail-title {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.social-rail-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-rail-link {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
+    transition: color 0.2s ease;
+}
+
+.social-rail-link:hover {
+    color: #ff0000;
+}
+
+.telemetry-strip {
+    position: absolute;
+    left: 50%;
+    bottom: 5vh;
+    transform: translateX(-50%);
+    width: min(1200px, 92%);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    z-index: 3;
+}
+
+.telemetry-card {
+    position: relative;
+    padding: 16px 18px 18px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.telemetry-tag {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.telemetry-value {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.editorial-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    padding: 80px 6% 100px;
+}
+
+.editorial-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 24px;
+    background: #000;
+}
+
+.bio-columns {
+    columns: 2;
+    column-gap: 28px;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #ffffff;
+}
+
+.rig-list {
+    display: grid;
+    gap: 16px;
+}
+
+.rig-row {
+    display: grid;
+    gap: 6px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rig-value {
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .social-rail { left: 12px; }
+    .telemetry-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bio-columns { columns: 1; }
+}
+
+@media (max-width: 640px) {
+    .social-rail { position: static; transform: none; flex-direction: row; justify-content: center; padding: 16px 0; }
+    .social-rail-links { flex-direction: row; }
+    .social-rail-link { writing-mode: horizontal-tb; transform: none; }
+    .telemetry-strip { grid-template-columns: 1fr; }
+    .editorial-grid { padding: 60px 6% 80px; }
+}
+
+.panel-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 18px 0;
+}
+
+.tech-list {
+    display: grid;
+    gap: 14px;
+}
+
+.tech-item {
+    display: grid;
+    gap: 8px;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tech-value {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+}
+
+.athlete-panels {
+    position: relative;
+    z-index: 1;
+    padding: 0 7% 80px;
+    margin-top: -60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.glass-card {
+    background: rgba(12, 12, 12, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    min-height: 220px;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(225, 6, 0, 0.6);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.55), 0 0 28px rgba(225, 6, 0, 0.5);
+}
+
+.glass-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.glass-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+}
+
+.glass-card[data-coord]::after,
+.glass-panel[data-coord]::after,
+.highlight-card[data-coord]::after {
+    content: attr(data-coord);
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.26em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+.athlete-highlights {
+    position: relative;
+    z-index: 2;
+    margin-top: -40px;
+    padding: 0 7% 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.highlight-card {
+    position: relative;
+    background: rgba(8, 8, 8, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 18px 20px 22px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(225, 6, 0, 0.6);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(225, 6, 0, 0.35);
+}
+
+.highlight-label {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.highlight-value {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.highlight-number {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: 0.12em;
+    color: #ffffff;
+}
+
+.highlight-unit {
+    font-size: 0.95rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.highlight-sub {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.spec-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.spec-item {
+    display: grid;
+    grid-template-columns: 16px 90px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.spec-item::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e10600;
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.6);
+    align-self: center;
+    grid-column: 1;
+}
+
+.spec-label {
+    color: rgba(255, 255, 255, 0.6);
+    grid-column: 2;
+}
+
+.spec-value {
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.06em;
+    text-transform: none;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    grid-column: 3;
+}
+
+.event-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.event-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.event-location {
+    color: rgba(255, 255, 255, 0.95);
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.athlete-quote {
+    position: absolute;
+    right: 6%;
+    bottom: 14%;
+    max-width: 420px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45);
+    text-shadow: 0 0 24px rgba(225, 6, 0, 0.2);
+    z-index: 2;
+}
+
+.sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.sponsor-logo {
+    width: 100%;
+    height: 70px;
+    object-fit: contain;
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+    filter: grayscale(1) brightness(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+}
+
+.sponsor-logo.in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: grayscale(0) brightness(1);
+}
+
+.athlete-profile .sponsor-logo {
+    filter: grayscale(1) brightness(0.75);
+}
+
+.athlete-profile .sponsor-logo.in {
+    filter: grayscale(1) brightness(0.75);
+}
+
+.athlete-profile .sponsor-logo:hover {
+    filter: grayscale(0) brightness(1);
+    box-shadow: 0 0 18px rgba(225, 6, 0, 0.45);
+}
+
+.scramble {
+    position: relative;
+    display: inline-block;
+}
+
+.blueprint-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: soft-light;
+}
+
+.blueprint-grid {
+    position: relative;
+    isolation: isolate;
+}
+
+.status-panel {
+    position: absolute;
+    top: calc(var(--nav-h) + 16px);
+    right: 24px;
+    display: grid;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
+    z-index: 3;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.status-panel span {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.glass-panel {
+    position: relative;
+    z-index: 2;
+    background: rgba(12, 12, 12, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(15px);
+    box-shadow:
+        inset 0 0 0 1px rgba(225, 6, 0, 0.08),
+        0 18px 36px rgba(0, 0, 0, 0.5);
+}
+
+.stat-card {
+    position: relative;
+    padding: 18px 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(8, 8, 8, 0.7);
+    backdrop-filter: blur(12px);
+    display: grid;
+    gap: 10px;
+}
+
+.stat-label {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    letter-spacing: 0.12em;
+}
+
+.stat-unit {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 18px;
+    padding-left: 18px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 18px;
+    display: grid;
+    gap: 6px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e10600;
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.6);
+}
+
+.timeline-year {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.timeline-text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.machine-item {
+    display: grid;
+    gap: 6px;
+}
+
+.machine-label {
+    font-family: "JetBrains Mono", "Space Grotesk", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.machine-value {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.athlete-hero-media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center top;
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.athlete-detail .athlete-hero-media::before {
+    content: none;
+}
+
+.clean-hero .athlete-hero-media::before {
+    content: none;
+}
+
+.athlete-hero:hover .athlete-hero-media {
+    transform: translate3d(var(--tilt-x), calc(var(--tilt-y) + var(--parallax, 0px)), 0) scale(1.12);
+    filter: saturate(1.2) contrast(1.1);
+    box-shadow: inset 0 0 0 2px rgba(225, 6, 0, 0.35);
+}
+
+body.athlete-detail .athlete-hero:hover .athlete-hero-media {
+    transform: none;
+    filter: saturate(1.1) contrast(1.05);
+    box-shadow: none;
+}
+
+.athlete-hero:hover .athlete-hero-media::before {
+    opacity: 0.35;
+    animation: glitch 1.2s steps(2, end) infinite;
+}
+
+.clean-hero .athlete-hero:hover .athlete-hero-media::before {
+    opacity: 0;
+    animation: none;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(6px, -4px); }
+    40% { transform: translate(-6px, 4px); }
+    60% { transform: translate(4px, 2px); }
+    80% { transform: translate(-4px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.cursor-dot,
+.cursor-ring {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 3000;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: #e10600;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.8);
+}
+
+.cursor-ring {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 42, 42, 0.8);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.has-custom-cursor {
+    cursor: none;
+}
+
+.has-custom-cursor.cursor-hover .cursor-ring {
+    transform: translate(-50%, -50%) scale(1.6);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
+}
+
+.has-custom-cursor.cursor-hover .cursor-dot {
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+@media (hover: none) {
+    .cursor-dot,
+    .cursor-ring {
+        display: none;
+    }
+    .has-custom-cursor {
+        cursor: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .athlete-hero-content { padding: 0 8% 9vh; }
+    .athlete-ring { width: 170px; height: 170px; }
+    .athlete-panels { margin-top: -40px; }
+    .athlete-highlights { padding: 0 8% 30px; }
+    .athlete-quote { position: static; margin-top: 24px; }
+    .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); bottom: 4vh; }
+    .profile-grid { padding: 60px 6% 80px; }
+}
+
+@media (max-width: 640px) {
+    .athlete-hero { min-height: 88vh; }
+    .athlete-identity { gap: 20px; }
+    .athlete-panels { padding: 0 6% 70px; }
+    .athlete-ring { width: 150px; height: 150px; }
+    .athlete-name { font-size: 2.6rem; }
+    .athlete-highlights { padding: 0 6% 30px; }
+    .athlete-quote { font-size: 1.5rem; }
+    .hero-stats { grid-template-columns: 1fr; }
+}
+
+@keyframes ring-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ring-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(225, 6, 0, 0.3); }
+    50% { box-shadow: 0 0 18px rgba(225, 6, 0, 0.55); }
+}
+
+@keyframes mountain-drift {
+    0% { transform: translateY(-2%) scale(1); }
+    100% { transform: translateY(2%) scale(1.02); }
+}
+
+@keyframes dust-float {
+    0% { transform: translateY(0); opacity: 0.25; }
+    50% { transform: translateY(-1%); opacity: 0.45; }
+    100% { transform: translateY(0); opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .athlete-hero-media,
+    .athlete-profile::before,
+    .athlete-profile::after,
+    .athlete-ring::before,
+    .athlete-ring::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
