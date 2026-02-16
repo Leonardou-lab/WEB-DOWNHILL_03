@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Downhill México</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="event-tiles.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" type="image/png" href="./Fotos/favicon.png"> 
+    <link rel="stylesheet" href="assets/css/global/styles.css">
+    <link rel="stylesheet" href="assets/css/global/navbar.css">
+    <link rel="stylesheet" href="assets/css/components/event-tiles.css">
+    <link rel="stylesheet" href="assets/css/pages/index.css">
+    <link rel="icon" type="image/png" href="assets/images/ui/favicon.png"> 
 
 </head>
 <body id="top" class="page-dark has-nav-padding page-home">
@@ -20,14 +20,14 @@
     <div class="rb-pill">
       <div class="rb-menu">
         <a class="rb-item" href="index.html#top">Inicio</a>
-        <a class="rb-item" href="eventos.html">Eventos</a>
-        <a class="rb-item" href="standings.html">Standings</a>
-        <a class="rb-item" href="atletas.html">Atletas</a>
-        <a class="rb-item" href="nosotros.html">Nosotros</a>
+        <a class="rb-item" href="pages/eventos/index.html">Eventos</a>
+        <a class="rb-item" href="pages/standings.html">Standings</a>
+        <a class="rb-item" href="pages/atletas/index.html">Atletas</a>
+        <a class="rb-item" href="pages/nosotros.html">Nosotros</a>
       </div>
     </div>
     <div class="rb-actions">
-        <a class="rb-login-btn" href="perfil.html">INICIAR SESIÓN</a>
+        <a class="rb-login-btn" href="pages/perfil.html">INICIAR SESIÓN</a>
     </div>
 
   </div>
@@ -38,7 +38,7 @@
         <!-- TODO: Reemplazar el background-color del .hero con una imagen real -->
         <video class="hero-video" autoplay muted loop playsinline preload="auto">
             <!-- copiar el video aquí: ./media/hero.mp4 -->
-            <source src="./media/hero.mp4" type="video/mp4">
+            <source src="assets/images/ui/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         
@@ -46,7 +46,7 @@
             <div class="hero-copy">
                 <h1 class="hero-title">Downhill<br>México</h1>
                 <p class="hero-claim">Gravedad. Velocidad.<br>Precisión.</p>
-                <a href="eventos.html" class="hero-cta-btn">COMPITE</a>
+                <a href="pages/eventos/index.html" class="hero-cta-btn">COMPITE</a>
             </div>
         </div>
 
@@ -60,11 +60,11 @@
                 <h2 class="home-events-title">Próximos Eventos</h2>
                 <p class="home-events-subtitle">Prepárate para la adrenalina. Estas son las próximas paradas del campeonato nacional.</p>
                 <div class="home-events-actions">
-                    <a class="home-events-btn" href="eventos.html">VER TODO</a>
+                    <a class="home-events-btn" href="pages/eventos/index.html">VER TODO</a>
                 </div>
             </div>
             <div class="home-events-grid" role="list">
-                <a class="event-tile" href="evento-ajusco.html" style="--bg:url('./Fotos/Ajusco2.jpg')" role="listitem">
+                <a class="event-tile" href="pages/eventos/ajusco.html" style="background-image:url('./assets/images/events/Ajusco2.jpg')" role="listitem">
                     <div class="event-overlay"></div>
                     <div class="event-content">
                         <div class="event-date">Febrero 1</div>
@@ -73,7 +73,7 @@
                     </div>
                 </a>
 
-                <a class="event-tile" href="evento-puebla.html" style="--bg:url('./Fotos/Puebla2.jpg')" role="listitem">
+                <a class="event-tile" href="pages/eventos/puebla.html" style="background-image:url('./assets/images/events/Puebla2.jpg')" role="listitem">
                     <div class="event-overlay"></div>
                     <div class="event-content">
                         <div class="event-date">Marzo 15</div>
@@ -82,7 +82,7 @@
                     </div>
                 </a>
 
-                <a class="event-tile" href="evento-guadalajara.html" style="--bg:url('./Fotos/Guadalajara2.jpg')" role="listitem">
+                <a class="event-tile" href="pages/eventos/guadalajara.html" style="background-image:url('./assets/images/events/Guadalajara2.jpg')" role="listitem">
                     <div class="event-overlay"></div>
                     <div class="event-content">
                         <div class="event-date">Mayo 3</div>
@@ -99,11 +99,11 @@
                 <h2 class="section-title">Atletas Destacados</h2>
                 <p class="section-sub">Conoce a los riders que están dominando la escena del downhill mexicano.</p>
                 <div class="wrapper-ver-todo">
-                    <a class="btn-ver-todo" href="atletas.html">VER TODO</a>
+                    <a class="btn-ver-todo" href="pages/atletas/index.html">VER TODO</a>
                 </div>
             </div>
             <div class="athlete-featured-scroll">
-                <a class="athlete-featured-card athlete-bg-1" href="atleta-toti-hope.html" aria-label="Ver atleta Toti Hope">
+                <a class="athlete-featured-card athlete-bg-1" href="pages/atletas/toti-hope.html" aria-label="Ver atleta Toti Hope">
                     <div class="athlete-featured-media"></div>
                     <div class="athlete-featured-info">
                         <div class="athlete-country">🇲🇽 México</div>
@@ -112,7 +112,7 @@
                     </div>
                 </a>
 
-                <a class="athlete-featured-card athlete-bg-2" href="atleta-camila-aguilar.html" aria-label="Ver atleta Camila Aguilar">
+                <a class="athlete-featured-card athlete-bg-2" href="pages/atletas/camila-aguilar.html" aria-label="Ver atleta Camila Aguilar">
                     <div class="athlete-featured-media"></div>
                     <div class="athlete-featured-info">
                         <div class="athlete-country">🇲🇽 México</div>
@@ -121,7 +121,7 @@
                     </div>
                 </a>
 
-                <a class="athlete-featured-card athlete-bg-3" href="atleta-kaito-roldan.html" aria-label="Ver atleta Kaito Roldan">
+                <a class="athlete-featured-card athlete-bg-3" href="pages/atletas/kaito-roldan.html" aria-label="Ver atleta Kaito Roldan">
                     <div class="athlete-featured-media"></div>
                     <div class="athlete-featured-info">
                         <div class="athlete-country">🇲🇽 México</div>
@@ -130,7 +130,7 @@
                     </div>
                 </a>
 
-                <a class="athlete-featured-card athlete-bg-4" href="atleta-juan-perez.html" aria-label="Ver atleta Juan Perez">
+                <a class="athlete-featured-card athlete-bg-4" href="pages/atletas/juan-perez.html" aria-label="Ver atleta Juan Perez">
                     <div class="athlete-featured-media"></div>
                     <div class="athlete-featured-info">
                         <div class="athlete-country">🇲🇽 México</div>
@@ -139,7 +139,7 @@
                     </div>
                 </a>
 
-                <a class="athlete-featured-card athlete-bg-5" href="atleta-valeria-soto.html" aria-label="Ver atleta Valeria Soto">
+                <a class="athlete-featured-card athlete-bg-5" href="pages/atletas/valeria-soto.html" aria-label="Ver atleta Valeria Soto">
                     <div class="athlete-featured-media"></div>
                     <div class="athlete-featured-info">
                         <div class="athlete-country">🇲🇽 México</div>
@@ -159,7 +159,7 @@
                     <button class="novedades-arrow prev" type="button" aria-label="Novedad anterior">‹</button>
                     <button class="novedades-arrow next" type="button" aria-label="Siguiente novedad">›</button>
                 </div>
-                <a class="novedad-slide is-active" href="novedad-1-bike.html" style="--bg:url('./media/novedad-bike.jpeg')">
+                <a class="novedad-slide is-active" href="pages/novedades/bike.html" style="background-image:url('./assets/images/news/novedad-bike.jpeg')">
                     <div class="novedad-overlay"></div>
                     <div class="novedad-content">
                         <span class="novedad-kicker">CICLISMO</span>
@@ -168,7 +168,7 @@
                     </div>
                 </a>
 
-                <a class="novedad-slide" href="novedad-2-podio.html" style="--bg:url('./media/novedad-podio.jpeg')">
+                <a class="novedad-slide" href="pages/novedades/podio.html" style="background-image:url('./assets/images/news/novedad-podio.jpeg')">
                     <div class="novedad-overlay"></div>
                     <div class="novedad-content">
                         <span class="novedad-kicker">COMPETENCIA</span>
@@ -177,7 +177,7 @@
                     </div>
                 </a>
 
-                <a class="novedad-slide" href="novedad-3-salto.html" style="--bg:url('./media/novedad-salto.jpeg')">
+                <a class="novedad-slide" href="pages/novedades/salto.html" style="background-image:url('./assets/images/news/novedad-salto.jpeg')">
                     <div class="novedad-overlay"></div>
                     <div class="novedad-content">
                         <span class="novedad-kicker">FREERIDE</span>
@@ -190,7 +190,7 @@
             <div class="novedades-dots" id="novedades-dots" aria-label="Novedades pagination"></div>
 
             <div class="wrapper-ver-todo novedades-actions">
-                <a class="btn-ver-todo" href="novedades.html">VER TODO</a>
+                <a class="btn-ver-todo" href="pages/novedades/index.html">VER TODO</a>
             </div>
         </section>
 
@@ -258,8 +258,8 @@
         </div>
     </footer>
 
-    <script src="navbar.js"></script>
-    <script src="novedades-slider.js"></script>
+    <script src="assets/js/global/navbar.js"></script>
+    <script src="assets/js/components/novedades-slider.js"></script>
     <script>
         // Carrusel functionality for Carreras and Atletas - Drag only (no buttons)
         function initCarousel(carouselId) {

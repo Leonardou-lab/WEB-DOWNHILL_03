@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body.has-nav-padding {
+    padding-top: var(--nav-h);
+}
+
+body.no-nav-padding {
+    padding-top: 0;
+}
+
+.rb-nav {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    display: flex;
+    justify-content: center;
+    padding: 0 5%;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.rb-nav::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--nav-h);
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+    box-shadow: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: -1;
+}
+
+.rb-nav.is-sticky::before {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+.rb-nav--hidden,
+.rb-nav.is-hidden {
+    transform: translateY(-140%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rb-nav-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: min(1200px, 100%);
+    padding: 0 8px;
+}
+
+.rb-logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    flex-shrink: 0;
+    text-transform: none;
+}
+
+.rb-pill {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(30, 30, 35, 0.58);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.brand-dh {
+    color: #e10600;
+}
+
+.brand-mexico {
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+.rb-menu {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.rb-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 600;
+    font-size: 0.96rem;
+    transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.rb-item--active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.rb-item:hover,
+.rb-item:focus-visible {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.rb-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.rb-login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: #e10600;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.rb-login-btn:hover,
+.rb-login-btn:focus-visible {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-1px);
+}
+
+.rb-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.rb-icon-btn:hover,
+.rb-icon-btn:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.rb-item:focus-visible,
+.rb-icon-btn:focus-visible,
+.rb-logo:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
+}
+
+@media (max-width: 860px) {
+    .rb-pill {
+        gap: 12px;
+        padding: 10px 16px;
+    }
+
+    .rb-item {
+        padding: 7px 14px;
+        font-size: 0.92rem;
+    }
+
+    .rb-logo {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .rb-pill {
+        border-radius: 26px;
+    }
+
+    .rb-logo {
+        font-size: 1.8rem;
+    }
+}
