@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perfil - Downhill México</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="icon" type="image/png" href="./Fotos/favicon.png"> 
+
+</head>
+<body class="page-dark has-nav-padding profile-page">
+  <nav class="rb-nav" aria-label="Navegación principal">
+    <div class="rb-nav-row">
+      <a class="rb-logo" href="index.html" aria-label="Inicio">
+        <span class="brand-dh">DH</span><span class="brand-mexico">méxico</span>
+      </a>
+      <div class="rb-pill">
+        <div class="rb-menu">
+          <a class="rb-item" href="index.html#top">Inicio</a>
+          <a class="rb-item" href="eventos.html">Eventos</a>
+          <a class="rb-item" href="standings.html">Standings</a>
+          <a class="rb-item" href="atletas.html">Atletas</a>
+          <a class="rb-item" href="nosotros.html">Nosotros</a>
+        </div>
+      </div>
+      <div class="rb-actions">
+        <a class="rb-login-btn" href="perfil.html">INICIAR SESIÓN</a>      </div>
+    </div>
+  </nav>
+
+  <main class="profile-main">
+    <header class="hero profile-hero" aria-label="Perfil">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="./media/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+
+      <div class="profile-card" role="region" aria-label="Formulario de inicio de sesión">
+        <h1 class="profile-title">Inicia sesión</h1>
+        <p class="profile-subtitle">Accede para guardar tus eventos, favoritos y rankings.</p>
+
+        <form class="profile-form" novalidate>
+          <label class="profile-label" for="profile-email">Email</label>
+          <input class="profile-input" id="profile-email" name="email" type="email" placeholder="tucorreo@email.com" autocomplete="email">
+
+          <label class="profile-label" for="profile-password">Contraseña</label>
+          <input class="profile-input" id="profile-password" name="password" type="password" placeholder="••••••••" autocomplete="current-password">
+
+          <button class="profile-btn" type="button">Entrar</button>
+
+          <div class="profile-separator" aria-hidden="true">o</div>
+
+          <button class="profile-btn profile-btn--secondary" type="button">Crear cuenta</button>
+
+          <a class="profile-link" href="#">¿Olvidaste tu contraseña?</a>
+        </form>
+      </div>
+    </header>
+  </main>
+
+  <script src="navbar.js"></script>
+</body>
+</html>

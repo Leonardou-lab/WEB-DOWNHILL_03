@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perfil - Downhill México</title>
+ <link rel="stylesheet" href="../assets/css/global/styles.css">
+  <link rel="stylesheet" href="../assets/css/global/navbar.css">
+  <link rel="stylesheet" href="../assets/css/pages/profile.css">
+  <link rel="icon" type="image/png" href="../assets/images/ui/favicon.png">
+
+</head>
+<body class="page-dark has-nav-padding profile-page">
+  <nav class="rb-nav" aria-label="Navegación principal">
+    <div class="rb-nav-row">
+      <a class="rb-logo" href="../index.html" aria-label="Inicio">
+        <span class="brand-dh">DH</span><span class="brand-mexico">méxico</span>
+      </a>
+      <div class="rb-pill">
+        <div class="rb-menu">
+          <a class="rb-item" href="../index.html#top">Inicio</a>
+          <a class="rb-item" href="../pages/eventos/index.html">Eventos</a>
+          <a class="rb-item" href="../pages/standings/index.html">Standings</a>
+          <a class="rb-item" href="../pages/atletas/index.html">Atletas</a>
+          <a class="rb-item" href="../pages/nosotros.html">Nosotros</a>
+        </div>
+      </div>
+      <div class="rb-actions">
+        <a class="rb-login-btn" href="perfil.html">INICIAR SESIÓN</a>      </div>
+    </div>
+  </nav>
+
+  <main class="profile-main">
+    <header class="hero profile-hero" aria-label="Perfil">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="../assets/images/ui/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+
+      <div class="profile-card" id="profileLoginCard" role="region" aria-label="Formulario de inicio de sesión">
+        <button class="profile-back-link" id="profileBackToLoginBtn" type="button" aria-label="Volver a iniciar sesión">Volver</button>
+        <h1 class="profile-title">Inicia sesión</h1>
+        <p class="profile-subtitle">Accede para guardar tus eventos, favoritos y rankings.</p>
+
+        <form class="profile-form" novalidate>
+  <div class="profile-message is-hidden" id="profileMessage" role="status" aria-live="polite"></div>
+
+  <div class="signup-step-panel signup-step-email">
+    <input class="profile-input" id="profile-signup-email" name="signup_email" type="email" placeholder="tucorreo@email.com" autocomplete="email" aria-label="Email">
+    <button class="profile-btn" id="profileContinueBtn" type="button">Continuar</button>
+    <div class="profile-separator" aria-hidden="true">o</div>
+    <div id="googleBtnContainerSignup" style="display: flex; justify-content: center; margin-top: 10px;"></div>
+  </div>
+
+  <div class="signup-step-panel signup-step-details">
+    <div class="signup-email-text">
+      <span class="signup-email-value" id="profileSignupEmailPreview">—</span>
+    </div>
+    <label class="profile-label" for="profile-name">Nombre</label>
+    <input class="profile-input" id="profile-name" name="name" type="text" placeholder="Tu nombre completo" autocomplete="name">
+
+    <label class="profile-label" for="profile-password-signup">Contraseña</label>
+    <input class="profile-input" id="profile-password-signup" name="password" type="password" placeholder="••••••••" autocomplete="new-password">
+
+    <label class="profile-label" for="profile-confirm">Confirmar contraseña</label>
+    <input class="profile-input" id="profile-confirm" name="password_confirm" type="password" placeholder="••••••••" autocomplete="new-password">
+
+    <button class="profile-btn" id="profileCreateAccountBtn" type="button">Crear cuenta</button>
+  </div>
+
+  <div class="login-step-panel login-step-email login-only">
+    <input class="profile-input" id="profile-email" name="email" type="email" placeholder="tucorreo@email.com" autocomplete="email" aria-label="Email">
+    <button class="profile-btn" id="profileLoginContinueBtn" type="button">Continuar</button>
+  </div>
+
+  <div class="login-step-panel login-step-password login-only">
+    <div class="login-email-text">
+      <span class="login-email-value" id="profileLoginEmailPreview">—</span>
+    </div>
+    <label class="profile-label sr-only" for="profile-password">Contraseña</label>
+    <input class="profile-input" id="profile-password" name="password" type="password" placeholder="••••••••" autocomplete="current-password">
+    <button class="profile-btn" id="profileLoginBtn" type="button">Entrar</button>
+    <a class="profile-link" id="profileForgotLink" href="#">¿Olvidaste tu contraseña?</a>
+  </div>
+
+  <div class="login-step1-only login-only">
+    <p class="profile-cta">¿No tienes cuenta?
+      <button class="profile-link-highlight" id="profileSignupBtn" type="button">Crear cuenta</button>
+    </p>
+
+    <div class="profile-separator" aria-hidden="true">o</div>
+    <div id="googleBtnContainer" style="display: flex; justify-content: center; margin-top: 10px;"></div>
+  </div>
+
+  <div class="forgot-only">
+    <p class="profile-recovery-email" id="profileRecoveryEmailText" hidden></p>
+    <input class="profile-input recovery-email-input" id="profile-recovery-email" name="recovery_email" type="email" placeholder="Correo de recuperación" autocomplete="email">
+    <button class="profile-btn" id="profileRecoverBtn" type="button">Enviar código</button>
+    <div class="recovery-code-step" id="profileRecoveryCodeStep">
+      <input class="profile-input" id="profile-recovery-code" name="recovery_code" type="text" inputmode="numeric" placeholder="Código de verificación">
+      <button class="profile-btn profile-btn--secondary" id="profileVerifyCodeBtn" type="button">Verificar código</button>
+      <p class="profile-hint" id="profileDemoCode" hidden></p>
+    </div>
+    <div class="recovery-password-step" id="profileRecoveryPasswordStep">
+      <input class="profile-input" id="profile-new-password" name="new_password" type="password" placeholder="Nueva contraseña" autocomplete="new-password">
+      <input class="profile-input" id="profile-new-password-confirm" name="new_password_confirm" type="password" placeholder="Confirmar nueva contraseña" autocomplete="new-password">
+      <button class="profile-btn" id="profileResetBtn" type="button">Restablecer contraseña</button>
+    </div>
+  </div>
+</form>
+      </div>
+
+      <div class="profile-card profile-card--info" id="profileInfoCard" role="region" aria-label="Información de usuario" hidden>
+        <h1 class="profile-title">Tu perfil</h1>
+        <p class="profile-subtitle">Información de tu cuenta en Downhill México.</p>
+        <div class="profile-info-list" id="perfil-info">
+          <div class="profile-info-row">
+            <span class="profile-info-label">Nombre</span>
+            <span class="profile-info-value" id="profileInfoName">—</span>
+          </div>
+          <div class="profile-info-row">
+            <span class="profile-info-label">Email</span>
+            <span class="profile-info-value" id="profileInfoEmail">—</span>
+          </div>
+        </div>
+        <button class="profile-btn profile-btn--secondary" id="profileLogoutBtn" type="button">Cerrar sesión</button>
+      </div>
+    </header>
+  </main>
+
+  <script src="../assets/js/global/navbar.js"></script>
+  <script>
+    const supabaseUrl = "https://ckerspumupzmksajgsur.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNrZXJzcHVtdXB6bWtzYWpnc3VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxNTMzMTcsImV4cCI6MjA4NTcyOTMxN30.lJgpsOJ2es2JTD-jhQnMhveBYQWOXdKZ87vKJy1BgQY";
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const setUserSession = (name, email) => {
+      const safeName = (name || "Usuario").trim();
+      localStorage.setItem("user_name", safeName);
+      if (email) localStorage.setItem("user_email", email);
+    };
+
+    const USERS_KEY = "users";
+    const normalizeEmail = (email) => (email || "").trim().toLowerCase();
+    const getUsers = () => {
+      try {
+        const raw = localStorage.getItem(USERS_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        console.warn("No se pudo leer usuarios guardados:", err);
+        return [];
+      }
+    };
+    const saveUsers = (users) => {
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    };
+    const findUserByEmail = (email) => {
+      const normalized = normalizeEmail(email);
+      if (!normalized) return null;
+      return getUsers().find((user) => user.email === normalized) || null;
+    };
+    const upsertUser = (user) => {
+      const users = getUsers();
+      const index = users.findIndex((item) => item.email === user.email);
+      if (index >= 0) users[index] = { ...users[index], ...user };
+      else users.push(user);
+      saveUsers(users);
+    };
+
+    const messageBox = document.getElementById("profileMessage");
+    const showMessage = (text, type = "error") => {
+      if (!messageBox) return;
+      messageBox.textContent = text;
+      messageBox.classList.remove("is-hidden", "is-error", "is-success", "is-info");
+      messageBox.classList.add(`is-${type}`);
+      messageBox.hidden = false;
+    };
+    const clearMessage = () => {
+      if (!messageBox) return;
+      messageBox.textContent = "";
+      messageBox.classList.add("is-hidden");
+      messageBox.hidden = true;
+    };
+
+    const redirectAfterLogin = () => {
+      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      if (returnTo) {
+        try {
+          const url = new URL(decodeURIComponent(returnTo));
+          if (url.origin === window.location.origin) {
+            window.location.href = url.href;
+            return;
+          }
+        } catch (_) {}
+      }
+      window.location.href = "index.html";
+    };
+
+    const handleEmailLogin = async () => {
+      const emailInput = document.getElementById("profile-email");
+      const passInput = document.getElementById("profile-password");
+      if (!emailInput || !passInput) return;
+
+      const email = emailInput.value.trim();
+      const password = passInput.value.trim();
+
+      if (!email || !password) {
+        showMessage("Completa tu email y contraseña para continuar.");
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        const errorMessage = (error.message || "").toLowerCase();
+        if (errorMessage.includes("invalid login credentials")) {
+          showMessage("Correo o contraseña incorrecta");
+        } else if (errorMessage.includes("email not confirmed")) {
+          showMessage("Debes confirmar tu correo antes de iniciar sesión.");
+        } else {
+          showMessage(`Error en Supabase: ${error.message}`);
+        }
+        return;
+      }
+
+      const user = data.user;
+      const name =
+        user?.user_metadata?.full_name ||
+        user?.user_metadata?.name ||
+        email.split("@")[0] ||
+        "Usuario";
+      clearMessage();
+      setUserSession(name, email);
+      redirectAfterLogin();
+    };
+
+    const handleSignup = async () => {
+      const nameInput = document.getElementById("profile-name");
+      const emailInput = document.getElementById("profile-signup-email");
+      const passInput = document.getElementById("profile-password-signup");
+      const confirmInput = document.getElementById("profile-confirm");
+      if (!nameInput || !emailInput || !passInput || !confirmInput) return;
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passInput.value.trim();
+      const confirmPassword = confirmInput.value.trim();
+
+      const normalizedEmail = normalizeEmail(email);
+      if (!name || !email || !password || !confirmPassword) {
+        showMessage("Completa nombre, email y contraseña para crear la cuenta.");
+        return;
+      }
+
+      if (!normalizedEmail) {
+        showMessage("Ingresa un correo válido.");
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage("La contraseña debe tener al menos 6 caracteres.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage("Las contraseñas no coinciden.");
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signUp({
+        email: normalizedEmail,
+        password,
+        options: {
+          data: {
+            full_name: name
+          }
+        }
+      });
+
+      if (error) {
+        const msg = (error.message || "").toLowerCase();
+        if (msg.includes("user already registered") || msg.includes("already") || msg.includes("exists")) {
+          showMessage("Ya existe una cuenta con ese correo.");
+        } else {
+          showMessage(`Error en Supabase: ${error.message}`);
+        }
+        return;
+      }
+
+      if (data.session) {
+        clearMessage();
+        setUserSession(name, email);
+        redirectAfterLogin();
+        return;
+      }
+
+      showMessage("Te enviamos un correo para confirmar tu cuenta.", "success");
+    };
+
+    const onGoogleLogin = async (response) => {
+      if (!response || !response.credential) {
+        showMessage("No se pudo iniciar con Google. Intenta de nuevo.");
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithIdToken({
+        provider: "google",
+        token: response.credential
+      });
+
+      if (error) {
+        showMessage(`Error en Supabase: ${error.message}`);
+        return;
+      }
+
+      const user = data.user;
+      const email = user?.email || "";
+      const name =
+        user?.user_metadata?.full_name ||
+        user?.user_metadata?.name ||
+        email ||
+        "Usuario";
+      const normalizedEmail = normalizeEmail(email);
+      if (normalizedEmail) {
+        const existingUser = findUserByEmail(normalizedEmail);
+        upsertUser({
+          ...(existingUser || {}),
+          name,
+          email: normalizedEmail,
+          displayEmail: email || normalizedEmail
+        });
+      }
+      clearMessage();
+      setUserSession(name, email || "");
+      redirectAfterLogin();
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector(".profile-form");
+      const loginCard = document.getElementById("profileLoginCard");
+      const infoCard = document.getElementById("profileInfoCard");
+      const infoName = document.getElementById("profileInfoName");
+      const infoEmail = document.getElementById("profileInfoEmail");
+      const logoutBtn = document.getElementById("profileLogoutBtn");
+      const loginBtn = document.getElementById("profileLoginBtn");
+      const loginContinueBtn = document.getElementById("profileLoginContinueBtn");
+      const loginEmailInput = document.getElementById("profile-email");
+      const loginEmailPreview = document.getElementById("profileLoginEmailPreview");
+      const forgotLink = document.getElementById("profileForgotLink");
+      const continueBtn = document.getElementById("profileContinueBtn");
+      const createAccountBtn = document.getElementById("profileCreateAccountBtn");
+      const signupEmailInput = document.getElementById("profile-signup-email");
+      const signupEmailPreview = document.getElementById("profileSignupEmailPreview");
+      const backToLoginFromSignup = document.getElementById("profileBackToLoginFromSignup");
+
+      if (loginBtn) {
+        loginBtn.addEventListener("click", handleEmailLogin);
+      }
+
+      const signupBtn = document.getElementById("profileSignupBtn");
+      if (signupBtn && form) {
+        signupBtn.addEventListener("click", () => {
+          clearMessage();
+          setSignupView();
+        });
+      }
+
+      if (loginContinueBtn) {
+        loginContinueBtn.addEventListener("click", () => {
+          clearMessage();
+          const email = loginEmailInput ? loginEmailInput.value.trim() : "";
+          const normalizedEmail = normalizeEmail(email);
+          const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          if (!normalizedEmail || !isValidEmail) {
+            showMessage("Ingresa un correo válido para continuar.", "info");
+            if (loginEmailInput) loginEmailInput.focus();
+            return;
+          }
+          if (loginEmailPreview) loginEmailPreview.textContent = email;
+          setLoginStep(2);
+          const passInput = document.getElementById("profile-password");
+          if (passInput) passInput.focus();
+        });
+      }
+
+      if (continueBtn) {
+        continueBtn.addEventListener("click", () => {
+          clearMessage();
+          const email = signupEmailInput ? signupEmailInput.value.trim() : "";
+          const normalizedEmail = normalizeEmail(email);
+          const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          if (!normalizedEmail || !isValidEmail) {
+            showMessage("Ingresa un correo válido para continuar.", "info");
+            if (signupEmailInput) signupEmailInput.focus();
+            return;
+          }
+          if (signupEmailPreview) signupEmailPreview.textContent = email;
+          setSignupStep(2);
+          const nameInput = document.getElementById("profile-name");
+          if (nameInput) nameInput.focus();
+        });
+      }
+
+      if (createAccountBtn) {
+        createAccountBtn.addEventListener("click", handleSignup);
+      }
+
+      if (backToLoginFromSignup) {
+        backToLoginFromSignup.addEventListener("click", () => {
+          clearMessage();
+          setLoginView();
+          const emailInput = document.getElementById("profile-email");
+          if (emailInput) emailInput.focus();
+        });
+      }
+
+      const recoverBtn = document.getElementById("profileRecoverBtn");
+      const verifyCodeBtn = document.getElementById("profileVerifyCodeBtn");
+      const backToLoginBtn = document.getElementById("profileBackToLoginBtn");
+      const recoveryState = {
+        code: null,
+        email: null,
+        displayEmail: null,
+        expires: null
+      };
+
+      const setLoginStep = (step) => {
+        if (!form) return;
+        form.classList.remove("is-login-step1", "is-login-step2");
+        if (step === 1) form.classList.add("is-login-step1");
+        if (step === 2) form.classList.add("is-login-step2");
+        if (loginCard) loginCard.classList.toggle("is-login-step2", step === 2);
+        const title = document.querySelector(".profile-title");
+        const subtitle = document.querySelector(".profile-subtitle");
+        if (step === 1) {
+          if (title) title.textContent = "Inicia sesión";
+          if (subtitle) subtitle.textContent = "Escribe tu correo para continuar.";
+        } else if (step === 2) {
+          if (title) title.textContent = "Contraseña";
+          if (subtitle) subtitle.textContent = "Ingresa tu contraseña.";
+        }
+      };
+
+      const setSignupStep = (step) => {
+        if (!form) return;
+        form.classList.remove("is-signup-step1", "is-signup-step2");
+        if (step === 1) form.classList.add("is-signup-step1");
+        if (step === 2) form.classList.add("is-signup-step2");
+        const title = document.querySelector(".profile-title");
+        const subtitle = document.querySelector(".profile-subtitle");
+        if (step === 1) {
+          if (title) title.textContent = "Crea tu cuenta";
+          if (subtitle) subtitle.textContent = "Escribe tu correo para continuar.";
+        } else if (step === 2) {
+          if (title) title.textContent = "Completa tus datos";
+          if (subtitle) subtitle.textContent = "Completa tus datos para registrarte.";
+        }
+      };
+
+      const setSignupView = () => {
+        if (!form) return;
+        form.classList.add("is-signup");
+        form.classList.remove("is-login-step1", "is-login-step2", "is-forgot", "is-recovering", "is-code-verified");
+        if (loginCard) {
+          loginCard.classList.remove("is-forgot", "is-login-step2");
+          loginCard.classList.add("is-signup");
+        }
+        setSignupStep(1);
+        if (signupEmailInput) signupEmailInput.focus();
+      };
+
+      const setLoginView = () => {
+        if (!form) return;
+        form.classList.remove("is-signup", "is-signup-step1", "is-signup-step2", "is-forgot", "is-recovering", "is-code-verified");
+        if (loginCard) loginCard.classList.remove("is-forgot", "is-login-step2", "is-signup");
+        setLoginStep(1);
+        if (signupBtn) signupBtn.textContent = "Crear cuenta";
+        if (loginBtn) loginBtn.textContent = "Entrar";
+        recoveryState.code = null;
+        recoveryState.email = null;
+        recoveryState.displayEmail = null;
+        recoveryState.expires = null;
+        const demoCode = document.getElementById("profileDemoCode");
+        if (demoCode) {
+          demoCode.hidden = true;
+          demoCode.textContent = "";
+        }
+        const recoveryEmailText = document.getElementById("profileRecoveryEmailText");
+        if (recoveryEmailText) {
+          recoveryEmailText.hidden = true;
+          recoveryEmailText.textContent = "";
+        }
+        const codeInput = document.getElementById("profile-recovery-code");
+        if (codeInput) codeInput.value = "";
+        const newPass = document.getElementById("profile-new-password");
+        const newPassConfirm = document.getElementById("profile-new-password-confirm");
+        if (newPass) newPass.value = "";
+        if (newPassConfirm) newPassConfirm.value = "";
+        const signupEmailPreviewText = document.getElementById("profileSignupEmailPreview");
+        if (signupEmailPreviewText) signupEmailPreviewText.textContent = "—";
+        if (signupEmailInput) signupEmailInput.value = "";
+        const nameInput = document.getElementById("profile-name");
+        if (nameInput) nameInput.value = "";
+        const passInput = document.getElementById("profile-password-signup");
+        if (passInput) passInput.value = "";
+        const confirmInput = document.getElementById("profile-confirm");
+        if (confirmInput) confirmInput.value = "";
+        if (loginEmailInput) loginEmailInput.value = "";
+        if (loginEmailPreview) loginEmailPreview.textContent = "—";
+        const loginPassInput = document.getElementById("profile-password");
+        if (loginPassInput) loginPassInput.value = "";
+      };
+
+      const setForgotView = () => {
+        if (!form) return;
+        form.classList.remove("is-signup", "is-signup-step1", "is-signup-step2", "is-login-step1", "is-login-step2");
+        form.classList.add("is-forgot");
+        form.classList.remove("is-recovering", "is-code-verified");
+        if (loginCard) {
+          loginCard.classList.add("is-forgot");
+          loginCard.classList.remove("is-login-step2", "is-signup");
+        }
+        const title = document.querySelector(".profile-title");
+        const subtitle = document.querySelector(".profile-subtitle");
+        if (title) title.textContent = "Recuperar contraseña";
+        if (subtitle) subtitle.textContent = "Escribe tu correo y te enviaremos un enlace.";
+        clearMessage();
+        const recoveryEmailText = document.getElementById("profileRecoveryEmailText");
+        if (recoveryEmailText) {
+          recoveryEmailText.hidden = true;
+          recoveryEmailText.textContent = "";
+        }
+        const recoveryInput = document.getElementById("profile-recovery-email");
+        if (recoveryInput) recoveryInput.focus();
+      };
+
+      if (forgotLink) {
+        forgotLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          setForgotView();
+        });
+      }
+
+      if (backToLoginBtn) {
+        backToLoginBtn.addEventListener("click", () => {
+          clearMessage();
+          if (form && form.classList.contains("is-login-step2")) {
+            setLoginStep(1);
+            const passInput = document.getElementById("profile-password");
+            if (passInput) passInput.value = "";
+            if (loginEmailInput) loginEmailInput.focus();
+            return;
+          }
+          setLoginView();
+          const emailInput = document.getElementById("profile-email");
+          if (emailInput) emailInput.focus();
+        });
+      }
+
+      if (recoverBtn) {
+        recoverBtn.addEventListener("click", async () => {
+          clearMessage();
+          const recoveryInput = document.getElementById("profile-recovery-email");
+          const email = recoveryInput ? recoveryInput.value.trim() : "";
+          if (!email) {
+            showMessage("Escribe tu correo para recuperar la contraseña.", "info");
+            if (recoveryInput) recoveryInput.focus();
+            return;
+          }
+          const normalizedEmail = normalizeEmail(email);
+          const { error } = await supabaseClient.auth.resetPasswordForEmail(normalizedEmail);
+          if (error) {
+            showMessage(`Error en Supabase: ${error.message}`);
+            return;
+          }
+          const recoveryEmailText = document.getElementById("profileRecoveryEmailText");
+          if (recoveryEmailText) {
+            recoveryEmailText.textContent = `Cuenta: ${email}`;
+            recoveryEmailText.hidden = false;
+          }
+          showMessage("Te enviamos un enlace para restablecer tu contraseña.", "success");
+        });
+      }
+
+      const verifyRecoveryCode = () => {
+        showMessage("La recuperación es por correo. Revisa tu bandeja.", "info");
+        return false;
+      };
+
+      if (verifyCodeBtn) {
+        verifyCodeBtn.addEventListener("click", verifyRecoveryCode);
+      }
+
+      const recoveryCodeInput = document.getElementById("profile-recovery-code");
+      if (recoveryCodeInput) {
+        recoveryCodeInput.addEventListener("input", () => {
+          if (form && form.classList.contains("is-recovering") && !form.classList.contains("is-code-verified") && recoveryCodeInput.value.trim().length >= 6) {
+            verifyRecoveryCode();
+          }
+        });
+      }
+
+      const resetBtn = document.getElementById("profileResetBtn");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          showMessage("Usa el enlace del correo para restablecer tu contraseña.", "info");
+        });
+      }
+
+      const userName = localStorage.getItem("user_name");
+      const userEmail = localStorage.getItem("user_email");
+      if (userName) {
+        document.body.classList.add("is-authenticated");
+        if (loginCard) loginCard.hidden = true;
+        if (infoCard) infoCard.hidden = false;
+        if (infoName) infoName.textContent = userName;
+        if (infoEmail) infoEmail.textContent = userEmail || "—";
+      } else {
+        document.body.classList.remove("is-authenticated");
+        if (loginCard) loginCard.hidden = false;
+        if (infoCard) infoCard.hidden = true;
+        setLoginStep(1);
+      }
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+          await supabaseClient.auth.signOut();
+          localStorage.removeItem("user_name");
+          localStorage.removeItem("user_email");
+          document.body.classList.remove("is-authenticated");
+          if (infoCard) infoCard.hidden = true;
+          if (loginCard) loginCard.hidden = false;
+          if (infoName) infoName.textContent = "—";
+          if (infoEmail) infoEmail.textContent = "—";
+
+          if (form) {
+            setLoginView();
+          }
+
+          if (window.location.hash) {
+            history.replaceState(null, "", "perfil.html");
+          }
+        });
+      }
+    });
+
+    window.addEventListener("load", () => {
+  if (!window.google || !google.accounts || !google.accounts.id) {
+    console.warn("Google Identity Services no está disponible.");
+    return;
+  }
+
+  // 1. Inicialización básica
+  google.accounts.id.initialize({
+    client_id: "346325174308-u9defb5a8srrmuiui7fvrplr6a3hs28i.apps.googleusercontent.com",
+    callback: onGoogleLogin,
+    use_fedcm_for_prompt: true // Necesario para navegadores modernos
+  });
+
+  // 2. Renderizar el botón con estilo NEGRO TOTAL
+  const btnContainer = document.getElementById("googleBtnContainer");
+  if (btnContainer) {
+    google.accounts.id.renderButton(btnContainer, {
+      type: "standard",
+      theme: "filled_black", // Esto lo hace negro sólido
+      size: "large",
+      text: "continue_with",
+      shape: "rectangular",
+      logo_alignment: "left",
+      width: 320 // Ajusta este número para que coincida con tu botón ROJO
+    });
+  }
+
+  const btnContainerSignup = document.getElementById("googleBtnContainerSignup");
+  if (btnContainerSignup) {
+    google.accounts.id.renderButton(btnContainerSignup, {
+      type: "standard",
+      theme: "filled_black",
+      size: "large",
+      text: "continue_with",
+      shape: "rectangular",
+      logo_alignment: "left",
+      width: 320
+    });
+  }
+
+  // Opcional: Esto lanza el aviso de la esquina solo si es seguro
+  google.accounts.id.prompt(); 
+});
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

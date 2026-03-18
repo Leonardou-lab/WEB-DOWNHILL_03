@@ -1,0 +1,131 @@
+body.page-nosotros {
+  background-color: #000000;
+  color: #ffffff;
+  --display-font: var(--brand-font);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body.page-nosotros::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("./media/fondo_nosotros.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body.page-nosotros main,
+body.page-nosotros section {
+  background-color: transparent;
+}
+
+.about-page {
+  min-height: calc(100vh - var(--nav-h));
+  padding: clamp(72px, 12vh, 140px) 0 clamp(80px, 12vh, 140px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 6vh, 64px);
+  position: relative;
+  z-index: 2;
+  
+  /* Contenedor centrado con fondo oscuro */
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: clamp(60px, 10vh, 100px) clamp(40px, 6vw, 80px);
+}
+
+.about-hero {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.about-title {
+  font-family: var(--display-font);
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  font-weight: 800;
+}
+
+.about-lead {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.about-section {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.about-section-title {
+  font-family: var(--display-font);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  margin: 0;
+}
+
+.about-sep {
+  width: min(140px, 30vw);
+  height: 1px;
+  margin: 6px auto 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  opacity: 0.7;
+}
+
+.about-copy {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+  line-height: 1.55;
+}
+
+.about-manifesto {
+  margin: clamp(20px, 5vh, 40px) auto 0;
+  text-align: center;
+  font-family: var(--display-font);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(1.1rem, 2.6vw, 1.8rem);
+  color: #ffffff;
+}
+
+.about-manifesto::before {
+  content: "";
+  display: block;
+  width: min(180px, 36vw);
+  height: 1px;
+  margin: 0 auto 16px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  opacity: 0.7;
+}
+
+/* Footer visible sobre el fondo */
+body.page-nosotros .site-footer {
+  position: relative;
+  z-index: 3;
+  background-color: #000000;
+}
+
+@media (max-width: 700px) {
+  .about-page {
+    max-width: 90%;
+    padding: clamp(50px, 10vh, 80px) clamp(24px, 5vw, 40px);
+  }
+}

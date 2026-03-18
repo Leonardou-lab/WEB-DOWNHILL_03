@@ -1,0 +1,51 @@
+/* ================================
+   EVENTS – FULL BLEED NO GAPS
+   ================================ */
+
+/* Contenedor principal de eventos */
+body.page-eventos .events-page {
+  margin: 0;
+  padding: 0;
+}
+
+/* Grid de eventos */
+body.page-eventos .events-screen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* Cada tarjeta */
+body.page-eventos .event-tile {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  height: 100vh; /* fuerza continuidad vertical */
+}
+
+/* Overlay no afecta layout */
+body.page-eventos .event-overlay {
+  border-radius: 0;
+}
+
+/* Quita espacio ENTRE bloques de eventos */
+body.page-eventos .events-screen + .events-screen {
+  margin-top: 0;
+}
+
+/* Quita espacio con la sección siguiente */
+body.page-eventos .events-page + section,
+body.page-eventos .events-screen:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Seguridad extra: siguiente sección no empuja */
+body.page-eventos section:not(.events-page) {
+  margin-top: 0;
+  padding-top: 0;
+}
