@@ -926,10 +926,6 @@ body:not(.page-home) .section-title {
     /* Elevación mínima en hover */
 }
 
-.atleta-card:hover .atleta-name {
-    /* Sin cambios adicionales */
-}
-
 /* ============================================
    CARRUSEL FADE GRADIENTS (dinámicos según scroll)
    ============================================ */
