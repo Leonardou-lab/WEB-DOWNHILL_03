@@ -155,7 +155,7 @@ body.no-nav-padding {
 
 .rb-login-btn:hover,
 .rb-login-btn:focus-visible {
-    background: #c90000;
+    background: #000000;
     color: #ffffff;
     transform: translateY(-1px);
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
