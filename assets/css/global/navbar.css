@@ -110,6 +110,7 @@ body.no-nav-padding {
     padding: 8px 18px;
     border-radius: 999px;
     color: rgba(255, 255, 255, 0.78);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
     font-size: 0.96rem;
     transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
@@ -143,6 +144,7 @@ body.no-nav-padding {
     border-radius: 10px;
     background: #e10600;
     color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 800;
     font-size: 0.85rem;
     letter-spacing: 0.08em;

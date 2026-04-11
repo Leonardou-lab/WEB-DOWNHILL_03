@@ -12,10 +12,17 @@
 
   const DEFAULT_CATEGORY = "elite";
 
-  const formatValue = (value) => {
+  const escapeHTML = (value) => {
     if (value === null || value === undefined || value === "") return "—";
-    return value;
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   };
+
+  const formatValue = escapeHTML;
 
   const getTableBodies = () => {
     const tables = Array.from(document.querySelectorAll(".standings-table"));
@@ -78,8 +85,6 @@
       showError(bodies);
       return;
     }
-
-    console.log(`[standings] Cargando tabla: ${tableName}`);
 
     try {
       const { data, error } = await window.supabaseClient
