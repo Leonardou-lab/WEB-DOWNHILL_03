@@ -11,12 +11,13 @@ body.page-home section {
 }
 
 body.page-home .home-events-title,
+body.page-home .patrocinadores-title,
 body.page-home .section-atletas .section-title,
 body.page-home .section-novedades .novedades-title {
-  ;
+  font-family: var(--display-font);
   color: var(--home-title-color);
   font-weight: var(--home-title-weight);
-  letter-spacing: var(--home-tfont-family: var(--display-font)itle-letter-spacing);
+  letter-spacing: var(--home-title-letter-spacing);
   text-align: var(--home-title-align);
   font-size: clamp(2.2rem, 4vw, 3.6rem);
 }
@@ -65,7 +66,7 @@ body.page-home .btn-ver-todo {
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
   cursor: pointer;
 }
-
+/* --- GLOBAL BUTTONS & HEADER UTILITIES --- */
 body.page-home .btn-ver-todo:hover {
   background: #ffffff;
   color: #000000;
@@ -75,32 +76,6 @@ body.page-home .btn-ver-todo:hover {
 
 body.page-home .btn-ver-todo:active {
   transform: translateY(0);
-}
-
-body.page-home .section-intro--with-cta {
-  width: 100%;
-  max-width: none;
-  padding: 56px 5% 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-body.page-home .section-carreras .section-intro--with-cta {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-body.page-home .section-intro__text {
-  flex: 1 1 auto;
-  text-align: center;
-}
-
-body.page-home .btn-ver-todo--corner {
-  flex: 0 0 auto;
-  margin: 0;
-  align-self: center;
 }
 
 body.page-home .section-header {
@@ -114,11 +89,198 @@ body.page-home .section-header {
   z-index: 1;
 }
 
-body.page-home .section-patrocinadores .section-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 30px;
+/* --- SECTION PATROCINADORES (RACING THEME) ---DaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+
+
+
+
+/* --- SECTION WRAPPER --- */
+body.page-home .section-patrocinadores {
+    background: #000;
+    padding: 120px 0 60px;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- FONDO DINÁMICO (Líneas de velocidad) --- */
+body.page-home .racing-bg-fx {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(225, 6, 0, 0.05));
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    pointer-events: none;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+body.page-home .ultimate-sponsorship-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 0 5%; /* Sin padding a la derecha */
+    margin-bottom: 80px;
+}
+
+/* --- TEXTO MASIVO --- */
+body.page-home .ultimate-title {
+    font-family: var(--display-font);
+    font-size: clamp(5rem, 12vw, 10rem); /* TÍTULO GIGANTE */
+    line-height: 0.8;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -4px;
+    transform: skewX(-8deg);
+}
+
+body.page-home .outline-text {
+    -webkit-text-stroke: 2px #e10600;
+    color: transparent;
+}
+
+/* --- HUD & BARS (Elementos Visuales) --- */
+body.page-home .hud-mini-data {
+    display: flex;
+    gap: 20px;
+    font-family: monospace;
+    color: #e10600;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+body.page-home .dynamic-visual-bars {
+    display: flex;
+    gap: 5px;
+    margin-top: 30px;
+}
+
+body.page-home .bar-unit {
+    height: 4px;
+    background: #e10600;
+    border-radius: 2px;
+}
+body.page-home .b-1 { width: 100px; animation: bar-pulse 1s infinite; }
+body.page-home .b-2 { width: 40px; opacity: 0.5; }
+body.page-home .b-3 { width: 10px; }
+
+@keyframes bar-pulse {
+    50% { width: 120px; background: #fff; }
+}
+
+/* --- BOTÓN SAVAGE RACING (DERECHA ABSOLUTA) --- */
+body.page-home .right-action-zone {
+    flex-shrink: 0;
+    margin-right: -2px;
+}
+
+body.page-home .btn-analogue-savage {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #e10600;
+    width: 48vw; /* Masivo pero equilibrado */
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    /* Corte diagonal limpio: Inicia al 40% para proteger el texto */
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+    transition: all 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+body.page-home .btn-text-container {
+    padding-right: 12%; /* Margen de seguridad derecho */
+    z-index: 5;
+    pointer-events: none;
+}
+
+body.page-home .text-slot {
+    display: flex;
+    flex-direction: column;
+    height: 110px; /* Ajustar según el tamaño de fuente */
+    overflow: hidden;
+}
+
+body.page-home .text-solid,
+body.page-home .text-outline {
+    font-family: var(--display-font);
+    font-size: clamp(5rem, 11vw, 9.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+    white-space: nowrap;
+}
+
+body.page-home .text-outline {
+    -webkit-text-stroke: 1.5px #fff;
+    color: transparent;
+}
+
+/* --- INTERACCIÓN --- */
+
+body.page-home .btn-analogue-savage:hover {
+    background: #000;
+    width: 55vw; /* Expansión lateral suave */
+}
+
+/* El texto sólido sube y el outline entra desde abajo */
+body.page-home .btn-analogue-savage:hover .text-solid {
+    transform: translateY(-100%);
+}
+
+body.page-home .btn-analogue-savage:hover .text-outline {
+    transform: translateY(-100%);
+}
+
+/* Textura Orgánica */
+body.page-home .btn-noise {
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+}
+
+body.page-home .btn-index {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #fff;
+    letter-spacing: 4px;
+    opacity: 0.5;
+    z-index: 5;
+}
+
+
+
+
+/* --- HOME EVENTS SECTION --- DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+body.page-home .sponsor {
+  filter: grayscale(1) brightness(1.5) opacity(0.6);
+  transition: all 0.3s ease;
+  background-size: 70% auto; /* Slightly smaller for more breathing room */
+}
+
+body.page-home .sponsor:hover {
+  filter: grayscale(0) brightness(1) opacity(1);
+  transform: translateY(-5px);
+  border-color: #e10600;
 }
 
 body.page-home .home-events {
@@ -444,9 +606,100 @@ body.page-home .athlete-featured-actions {
 }
 
 body.page-home .section-patrocinadores {
-  background-color: #000000;
   overflow: visible;
-  padding: 60px 5%;
+  --patroc-inline-pad: clamp(16px, 5vw, 80px);
+  padding: clamp(64px, 9vh, 112px) var(--patroc-inline-pad) clamp(40px, 7vh, 72px);
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(225, 6, 0, 0.12), transparent 52%),
+    #000000;
+}
+
+body.page-home .featured-sponsors {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(210px,0.64fr);
+  gap: clamp(14px, 1.8vw, 22px);
+  align-items: start;
+  margin: 0 auto clamp(26px, 4vw, 40px);
+  max-width: 1040px;
+}
+
+body.page-home .featured-sponsor-stack {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(6px, 1vw, 10px);
+}
+
+body.page-home .featured-sponsor-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 48%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  overflow: hidden;
+}
+
+body.page-home .featured-sponsor-card--hero {
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 16 / 12.25;
+  align-items: center;
+}
+
+body.page-home .featured-sponsor-card--side {
+  aspect-ratio: 1 / 1;
+  min-height: auto;
+}
+
+body.page-home .featured-sponsor-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+body.page-home .featured-sponsor-image--bike {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center 56%;
+  transform: none;
+  clip-path: inset(10% 0 12% 0);
+}
+
+body.page-home .featured-sponsor-image--side {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+body.page-home .featured-sponsor-stack .featured-sponsor-card:first-child .featured-sponsor-image--side {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(0.86);
+}
+
+body.page-home .featured-sponsor-stack .featured-sponsor-card:last-child .featured-sponsor-image--side {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(0.8);
 }
 
 body.page-home .marquee-container {
@@ -458,16 +711,16 @@ body.page-home .marquee-container {
   margin-right: -50vw;
   overflow: hidden;
   padding: 20px 0;
-  background-color: #000000;
 }
 
 body.page-home .marquee-track {
   display: flex;
-  gap: 30px;
+  gap: clamp(24px, 3vw, 40px);
   width: max-content;
   animation: marquee 40s linear infinite;
   will-change: transform;
   padding-left: 5%;
+  padding-right: 5%;
 }
 
 body.page-home .marquee-container:hover .marquee-track {
@@ -484,12 +737,11 @@ body.page-home .marquee-container:hover .marquee-track {
 }
 
 body.page-home .sponsor {
-  width: 200px;
-  height: 120px;
-  background: #000000;
+  width: clamp(200px, 18vw, 260px);
+  height: clamp(118px, 11vw, 150px);
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
-  border-radius: 12px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -498,8 +750,7 @@ body.page-home .sponsor {
   font-size: 1.1rem;
   flex-shrink: 0;
   transition: var(--transition);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.801);
-  background-size: contain;
+  background-size: 82% auto;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -568,6 +819,41 @@ body.page-home .sponsor:hover {
   body.page-home .home-events .event-tile {
     height: 70vh;
   }
+
+  body.page-home .featured-sponsors {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-home .featured-sponsor-card--hero {
+    height: auto;
+    aspect-ratio: 16 / 12.5;
+  }
+
+  body.page-home .featured-sponsor-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  body.page-home .featured-sponsor-card--side {
+    aspect-ratio: 1 / 1;
+  }
+
+  body.page-home .featured-sponsor-image--bike {
+    object-position: center 55%;
+    clip-path: inset(5% 0 7% 0);
+  }
+
+  body.page-home .featured-sponsor-image--side {
+    transform: none;
+  }
+
+  body.page-home .featured-sponsor-stack .featured-sponsor-card:first-child .featured-sponsor-image--side {
+    transform: scale(0.82);
+  }
+
+  body.page-home .featured-sponsor-stack .featured-sponsor-card:last-child .featured-sponsor-image--side {
+    transform: scale(0.76);
+  }
 }
 
 @media (max-width: 800px) {
@@ -579,15 +865,44 @@ body.page-home .sponsor:hover {
   body.page-home .section-intro__text {
     text-align: center;
   }
+
+  body.page-home .patrocinadores-bike-card {
+    max-height: min(190px, 52vw);
+    border-radius: 16px;
+  }
 }
 
 @media (max-width: 768px) {
+  body.page-home .patrocinadores-bike-card {
+    max-height: min(170px, 56vw);
+    padding: 10px;
+  }
+
   body.page-home .athlete-featured-card {
     flex: 0 0 300px;
   }
 
   body.page-home .athlete-featured-media {
     height: 280px;
+  }
+
+  body.page-home .marquee-track {
+    gap: 22px;
+  }
+
+  body.page-home .sponsor {
+    width: 190px;
+    height: 112px;
+  }
+
+  body.page-home .featured-sponsor-card {
+    min-height: 140px;
+    border-radius: 18px;
+    padding: 8px;
+  }
+
+  body.page-home .featured-sponsor-card--side {
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -609,6 +924,32 @@ body.page-home .sponsor:hover {
 
   body.page-home .novedades-arrow.next {
     right: 10px;
+  }
+
+  body.page-home .featured-sponsor-stack {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-home .featured-sponsor-card--hero {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  body.page-home .featured-sponsor-image--bike {
+    object-position: center 54%;
+    clip-path: inset(4% 0 6% 0);
+  }
+
+  body.page-home .featured-sponsor-image--side {
+    transform: none;
+  }
+
+  body.page-home .featured-sponsor-stack .featured-sponsor-card:first-child .featured-sponsor-image--side {
+    transform: scale(0.8);
+  }
+
+  body.page-home .featured-sponsor-stack .featured-sponsor-card:last-child .featured-sponsor-image--side {
+    transform: scale(0.72);
   }
 }
 

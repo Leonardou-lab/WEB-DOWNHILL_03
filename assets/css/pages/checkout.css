@@ -319,13 +319,20 @@ body.page-checkout {
   background: #0f0f0f;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
-  padding: 36px 32px;
+  padding: 36px 32px 36px 32px;
+  position: relative;
   width: min(400px, 90vw);
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 14px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.checkout-auth-back-top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
 }
 
 .checkout-auth-event {
