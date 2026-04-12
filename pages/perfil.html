@@ -131,16 +131,29 @@
   </main>
 
   <script src="../assets/js/global/navbar.js"></script>
+  <script src="../assets/js/pages/supabaseClient.js"></script>
   <script>
-    const supabaseUrl = "https://ckerspumupzmksajgsur.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNrZXJzcHVtdXB6bWtzYWpnc3VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxNTMzMTcsImV4cCI6MjA4NTcyOTMxN30.lJgpsOJ2es2JTD-jhQnMhveBYQWOXdKZ87vKJy1BgQY";
-    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    const supabaseClient = window.supabaseClient;
 
     const setUserSession = (name, email) => {
       const safeName = (name || "Usuario").trim();
       localStorage.setItem("user_name", safeName);
       if (email) localStorage.setItem("user_email", email);
     };
+
+    // Captura todos los métodos de login (email, Google One Tap, Google OAuth redirect)
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        const user = session.user;
+        const email = user.email || "";
+        const name =
+          user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          email.split("@")[0] ||
+          "Usuario";
+        setUserSession(name, email);
+      }
+    });
 
     const USERS_KEY = "users";
     const normalizeEmail = (email) => (email || "").trim().toLowerCase();
@@ -196,7 +209,7 @@
           }
         } catch (_) {}
       }
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     };
 
     const handleEmailLogin = async () => {
@@ -652,7 +665,6 @@
 
     window.addEventListener("load", () => {
   if (!window.google || !google.accounts || !google.accounts.id) {
-    console.warn("Google Identity Services no está disponible.");
     return;
   }
 
