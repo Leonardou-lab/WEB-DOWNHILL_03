@@ -136,10 +136,24 @@
   }
 
   // -----------------------------
+  // Login button — muestra primer nombre si hay sesión
+  // -----------------------------
+  const updateLoginBtn = () => {
+    const btn = nav.querySelector(".rb-login-btn");
+    if (!btn) return;
+    const userName = localStorage.getItem("user_name");
+    if (userName) {
+      const firstName = userName.trim().split(/\s+/)[0];
+      btn.textContent = firstName.toUpperCase();
+    }
+  };
+
+  // -----------------------------
   // Init
   // -----------------------------
   setActiveLink();
   setNavHeight();
+  updateLoginBtn();
   refreshScroller();
 
   lastY = getScrollTop();
