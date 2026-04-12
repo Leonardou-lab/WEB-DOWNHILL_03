@@ -2,11 +2,6 @@
   const nav = document.querySelector(".rb-nav");
   if (!nav) return;
 
-  // -----------------------------
-  // Helpers
-  // -----------------------------
-  const normalize = (value) => (value || "").split("#")[0];
-
   const setActiveLink = () => {
     const path = window.location.pathname;
     let activeKey = "";
@@ -145,8 +140,15 @@
     if (userName) {
       const firstName = userName.trim().split(/\s+/)[0];
       btn.textContent = firstName.toUpperCase();
+    } else {
+      btn.textContent = "INICIAR SESIÓN";
     }
   };
+
+  // Actualiza el botón si otra pestaña o el flujo OAuth cambia localStorage
+  window.addEventListener("storage", (e) => {
+    if (e.key === "user_name") updateLoginBtn();
+  });
 
   // -----------------------------
   // Init
