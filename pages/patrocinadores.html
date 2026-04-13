@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patrocinadores | Downhill México</title>
+    <title>Orbea | Downhill México</title>
     <link rel="stylesheet" href="../assets/css/global/styles.css">
     <link rel="stylesheet" href="../assets/css/global/navbar.css">
     <link rel="stylesheet" href="../assets/css/pages/patrocinadores.css">
@@ -30,187 +30,111 @@
         </div>
     </nav>
 
-    <main class="sponsors-page">
-        <header class="sponsors-hero">
-            <div class="sponsors-hero__glow sponsors-hero__glow--left" aria-hidden="true"></div>
-            <div class="sponsors-hero__glow sponsors-hero__glow--right" aria-hidden="true"></div>
-            <div class="sponsors-shell sponsors-hero__content">
-                <p class="sponsors-kicker">Sponsor Page</p>
-                <h1 class="sponsors-hero__title">Marcas que convierten la gravedad en ventaja.</h1>
-                <p class="sponsors-hero__copy">
-                    Un layout más directo para ver lo que importa: productos clave, marcas fuertes y accesos
-                    oficiales para encontrar cada referencia sin saturar la página.
+    <main class="sponsors-page sponsors-page--orbea">
+        <section class="orbea-hero" aria-labelledby="orbea-hero-title">
+            <div class="orbea-hero__media" aria-hidden="true">
+                <img class="orbea-hero__bg" src="../assets/images/sponsors/Orbea Sponsor/bk_2.jpg" alt="" loading="eager" decoding="async" width="1920" height="1080">
+            </div>
+            <div class="orbea-hero__veil" aria-hidden="true"></div>
+            <div class="sponsors-shell orbea-hero__content">
+                <p class="sponsors-kicker">Official partner</p>
+                <h1 id="orbea-hero-title" class="orbea-hero__title">ORBEA</h1>
+                <p class="orbea-hero__copy">
+                    Desde 1840, Orbea representa diseño europeo, precisión y rendimiento.
                 </p>
-                <div class="sponsors-hero__actions">
-                    <a class="sponsors-main-btn" href="#productos">VER PRODUCTOS</a>
-                    <a class="sponsors-secondary-link" href="#dealers">Dealer network</a>
-                </div>
-                <div class="sponsors-hero__tags" aria-label="Categorías de patrocinio">
-                    <span>Bikes</span>
-                    <span>Protection</span>
-                    <span>Components</span>
-                    <span>Recovery</span>
+                <div class="orbea-hero__actions">
+                    <a class="sponsors-secondary-link" href="https://www.orbea.com/us-en/" target="_blank" rel="noopener noreferrer">Sitio oficial</a>
                 </div>
             </div>
-        </header>
+        </section>
 
-        <section class="products-section" id="productos" aria-labelledby="productos-title" data-waves-section>
-            <div class="products-section__waves" aria-hidden="true">
-                <canvas class="products-section__canvas" data-waves-canvas></canvas>
-            </div>
-            <div class="sponsors-shell products-section__inner">
+        <section class="orbea-products" aria-labelledby="orbea-products-title" data-waves-section>
+            <div class="sponsors-shell">
                 <div class="sponsors-section-head sponsors-section-head--compact">
-                    <p class="sponsors-kicker">Featured Products</p>
-                    <h2 id="productos-title">Productos listos para competir</h2>
+                    <p class="sponsors-kicker">Equipment selection</p>
+                    <h2 id="orbea-products-title">Bici, casco y guantes.</h2>
                     <p>
-                        La sección de producto ahora respira más: piezas protagonistas sobre un fondo con energía
-                        visual, pero con una lectura mucho más limpia.
+                        Tres piezas. Una presencia limpia. Una lectura visual más fuerte.
                     </p>
                 </div>
 
-                <div class="products-showcase">
-                    <article class="product-card product-card--primary">
-                        <div class="product-card__eyebrow">Carbon Platform</div>
-                        <h3>Orbea Factory DH</h3>
-                        <p>Una plataforma gravity con presencia dominante, líneas tensas y lectura inmediata de rendimiento.</p>
-                        <img src="../assets/images/sponsors/Orbea Sponsor/Bici dh.png" alt="Bicicleta de downhill Orbea en vista de producto">
+                <div class="orbea-products__stage">
+                    <canvas class="orbea-products__canvas" data-waves-canvas aria-hidden="true"></canvas>
+                    <article class="orbea-product-card orbea-product-card--bike">
+                        <span class="orbea-product-card__label">Bike</span>
+                        <img src="../assets/images/sponsors/Orbea Sponsor/Bici dh.png" alt="Bicicleta de downhill Orbea" loading="lazy" decoding="async">
                     </article>
 
-                    <article class="product-card">
-                        <div class="product-card__eyebrow">Impact Control</div>
-                        <h3>POC Race Helmet</h3>
-                        <p>Protección integral y un lenguaje visual de carrera pensado para secciones rápidas y técnicas.</p>
-                        <img src="../assets/images/sponsors/Orbea Sponsor/Casco dh.png" alt="Casco de downhill de alto rendimiento">
+                    <article class="orbea-product-card orbea-product-card--helmet">
+                        <span class="orbea-product-card__label">Helmet</span>
+                        <img src="../assets/images/sponsors/Orbea Sponsor/Casco dh.png" alt="Casco de downhill Orbea" loading="lazy" decoding="async">
                     </article>
 
-                    <article class="product-card">
-                        <div class="product-card__eyebrow">Race Grip</div>
-                        <h3>Factory Gloves</h3>
-                        <p>Contacto limpio, control preciso y tacto listo para bajar fuerte desde la primera curva.</p>
-                        <img src="../assets/images/sponsors/Orbea Sponsor/Guantes.png" alt="Guantes técnicos para downhill">
+                    <article class="orbea-product-card orbea-product-card--gloves">
+                        <span class="orbea-product-card__label">Gloves</span>
+                        <img src="../assets/images/sponsors/Orbea Sponsor/Guantes.png" alt="Guantes de downhill Orbea" loading="lazy" decoding="async">
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="sponsors-grid-section" id="grid-marcas" aria-labelledby="grid-marcas-title">
+        <section class="orbea-story" id="orbea-data" aria-labelledby="orbea-story-title">
             <div class="sponsors-shell">
-                <div class="sponsors-section-head">
-                    <p class="sponsors-kicker">Brand Lineup</p>
-                    <h2 id="grid-marcas-title">Marcas que sostienen cada detalle del setup</h2>
-                    <p>La retícula actual sigue siendo la lectura más limpia para las marcas, así que se mantiene y se refina para sentirse más sólida y premium.</p>
-                </div>
+                <div class="orbea-story__panel">
+                    <div class="orbea-story__backdrop" aria-hidden="true"></div>
+                    <div class="orbea-story__grid">
+                        <div class="orbea-story__copy">
+                            <p class="sponsors-kicker">Brand profile</p>
+                            <h2 id="orbea-story-title">Race heritage. Human emotion.</h2>
+                            <p class="orbea-story__lede">
+                                Orbea combina ingeniería de competición, estética premium y una cultura de montaña que convierte cada bicicleta en una firma de velocidad.
+                            </p>
 
-                <div class="sponsor-grid">
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Bikes</span>
-                        <div class="brand-card__logo brand-card__logo--orbea"></div>
-                        <h3>Orbea</h3>
-                        <p>Cuadros, rigs de descenso y plataformas de carbono orientadas a competición.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Protection</span>
-                        <div class="brand-card__logo brand-card__logo--poc"></div>
-                        <h3>POC</h3>
-                        <p>Cascos y protección avanzada con enfoque en absorción de impacto y visibilidad.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Apparel</span>
-                        <div class="brand-card__logo brand-card__logo--fox"></div>
-                        <h3>Fox</h3>
-                        <p>Apparel técnico y protección para sesiones largas con lectura agresiva del terreno.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Tires</span>
-                        <div class="brand-card__logo brand-card__logo--maxxis"></div>
-                        <h3>Maxxis</h3>
-                        <p>Neumáticos con agarre progresivo, control lateral y tracción sobre superficies cambiantes.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Drivetrain</span>
-                        <div class="brand-card__logo brand-card__logo--sram"></div>
-                        <h3>SRAM</h3>
-                        <p>Transmisión precisa y componentes orientados a eficiencia bajo carga.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Braking</span>
-                        <div class="brand-card__logo brand-card__logo--shimano"></div>
-                        <h3>Shimano</h3>
-                        <p>Frenado consistente, ergonomía depurada y confiabilidad de carrera.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Contact Points</span>
-                        <div class="brand-card__logo brand-card__logo--crankbrothers"></div>
-                        <h3>Crankbrothers</h3>
-                        <p>Pedales, herramientas y contacto mecánico pensado para terrenos técnicos.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Care</span>
-                        <div class="brand-card__logo brand-card__logo--muc-off"></div>
-                        <h3>Muc-Off</h3>
-                        <p>Limpieza, lubricación y mantenimiento premium para conservar cada watt.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Support</span>
-                        <div class="brand-card__logo brand-card__logo--tannus"></div>
-                        <h3>Tannus</h3>
-                        <p>Inserciones y soporte interno para pilotaje agresivo con menos compromiso.</p>
-                    </article>
-                    <article class="brand-card">
-                        <span class="brand-card__tag">Recovery</span>
-                        <div class="brand-card__logo brand-card__logo--electrolit"></div>
-                        <h3>Electrolit</h3>
-                        <p>Hidratación y recuperación para sostener intensidad durante jornadas de competencia.</p>
-                    </article>
+                            <div class="orbea-story__stats" aria-label="Datos destacados de Orbea">
+                                <article class="orbea-stat">
+                                    <span class="orbea-stat__value">1840</span>
+                                    <span class="orbea-stat__label">origen histórico</span>
+                                </article>
+                                <article class="orbea-stat">
+                                    <span class="orbea-stat__value">100%</span>
+                                    <span class="orbea-stat__label">diseño orientado al rendimiento</span>
+                                </article>
+                                <article class="orbea-stat">
+                                    <span class="orbea-stat__value">DH</span>
+                                    <span class="orbea-stat__label">ADN de competición</span>
+                                </article>
+                            </div>
+
+                            <div class="orbea-story__highlights" aria-label="Fortalezas de la marca">
+                                <div class="orbea-story__highlight">
+                                    <span class="orbea-story__highlight-title">Frames</span>
+                                    <span class="orbea-story__highlight-copy">Geometría precisa para estabilidad, control y agresividad en bajada.</span>
+                                </div>
+                                <div class="orbea-story__highlight">
+                                    <span class="orbea-story__highlight-title">Emotion</span>
+                                    <span class="orbea-story__highlight-copy">Una identidad visual limpia que se siente premium incluso en silencio.</span>
+                                </div>
+                                <div class="orbea-story__highlight">
+                                    <span class="orbea-story__highlight-title">Performance</span>
+                                    <span class="orbea-story__highlight-copy">Materiales, ajuste y presencia creados para rodar fuerte y verse mejor.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="orbea-story__visual" aria-hidden="true">
+                            <div class="orbea-story__visual-badge">Orbea Factory Spirit</div>
+                            <img src="../assets/images/sponsors/Orbea Sponsor/Bk_verde.jpg" alt="" loading="eager" decoding="async" width="1600" height="1200">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="dealers-section" id="dealers" aria-labelledby="dealers-title">
+        <section class="orbea-logo-section" aria-label="Logo de Orbea">
             <div class="sponsors-shell">
-                <div class="sponsors-section-head">
-                    <p class="sponsors-kicker">Dealer Network</p>
-                    <h2 id="dealers-title">Accesos directos por marca y producto</h2>
-                    <p>Cada tarjeta te lleva a la web oficial de la marca para explorar dealers, producto o línea completa sin pasar por búsquedas genéricas.</p>
-                </div>
-
-                <div class="dealers-grid">
-                    <a class="dealer-card" href="https://www.orbea.com/us-en/dealers/" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">Orbea</span>
-                        <strong>Gravity bikes y dealers oficiales</strong>
-                        <p>Encuentra el universo Orbea y ubica distribuidores oficiales para plataformas de montaña y downhill.</p>
-                        <span class="dealer-card__cta">Ir a Orbea</span>
-                    </a>
-                    <a class="dealer-card" href="https://poc.com/en-us/categories/cycling/mountain-bike/helmets" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">POC</span>
-                        <strong>Mountain bike helmets</strong>
-                        <p>Explora la línea oficial de cascos full-face y protección MTB de la marca.</p>
-                        <span class="dealer-card__cta">Ir a POC</span>
-                    </a>
-                    <a class="dealer-card" href="https://www.foxracing.com/mens/mtb/" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">Fox</span>
-                        <strong>MTB apparel y gloves</strong>
-                        <p>Ropa técnica, guantes y piezas de trail/downhill directo desde el catálogo oficial.</p>
-                        <span class="dealer-card__cta">Ir a Fox</span>
-                    </a>
-                    <a class="dealer-card" href="https://www.maxxis.com/us/tires/maxxis-bicycle-tires/mountain/" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">Maxxis</span>
-                        <strong>Mountain tires</strong>
-                        <p>Consulta llantas de montaña con foco en grip, control lateral y tracción para secciones agresivas.</p>
-                        <span class="dealer-card__cta">Ir a Maxxis</span>
-                    </a>
-                    <a class="dealer-card" href="https://www.sram.com/en/sram/mountain/series/eagle-drivetrain" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">SRAM</span>
-                        <strong>Eagle drivetrain</strong>
-                        <p>Accede a la línea oficial de transmisión para configuraciones de montaña de alto desempeño.</p>
-                        <span class="dealer-card__cta">Ir a SRAM</span>
-                    </a>
-                    <a class="dealer-card" href="https://bike.shimano.com/products/series/saint.html" target="_blank" rel="noopener noreferrer">
-                        <span class="dealer-card__city">Shimano</span>
-                        <strong>SAINT gravity components</strong>
-                        <p>Una entrada directa al ecosistema gravity de Shimano para frenos y componentes pensados para descenso.</p>
-                        <span class="dealer-card__cta">Ir a Shimano</span>
-                    </a>
+                <div class="orbea-logo-card">
+                    <div class="orbea-logo-card__media">
+                        <img src="https://logodix.com/logo/2135065.jpg" alt="Logo de Orbea" loading="lazy" decoding="async">
+                    </div>
                 </div>
             </div>
         </section>
