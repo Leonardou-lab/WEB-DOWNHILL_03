@@ -2,6 +2,18 @@
   const nav = document.querySelector(".rb-nav");
   if (!nav) return;
 
+  const navRow = nav.querySelector(".rb-nav-row");
+  const pill = nav.querySelector(".rb-pill");
+  const actions = nav.querySelector(".rb-actions");
+  const menu = nav.querySelector(".rb-menu");
+  const loginBtn = nav.querySelector(".rb-login-btn");
+
+  if (!navRow || !pill || !actions || !menu || !loginBtn) return;
+
+  const mobileQuery = window.matchMedia("(max-width: 860px)");
+  let mobileOpen = false;
+
+  const mobileLinks = Array.from(menu.querySelectorAll(".rb-item"));
   const setActiveLink = () => {
     const path = window.location.pathname;
     let activeKey = "";
@@ -15,8 +27,7 @@
     else if (path.includes("perfil")) activeKey = "perfil";
     else activeKey = "index";
 
-    const links = Array.from(nav.querySelectorAll(".rb-item"));
-    links.forEach((link) => {
+    mobileLinks.forEach((link) => {
       const href = link.getAttribute("href") || "";
       const matches =
         (activeKey === "atletas" && href.includes("atletas")) ||
@@ -33,6 +44,21 @@
     });
   };
 
+  const ensureMobileToggle = () => {
+    let toggle = nav.querySelector(".rb-menu-toggle");
+    if (toggle) return toggle;
+
+    toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "rb-menu-toggle";
+    toggle.setAttribute("aria-label", "Abrir menú");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = '<span></span><span></span><span></span>';
+
+    navRow.insertBefore(toggle, actions);
+    return toggle;
+  };
+
   const setNavHeight = () => {
     const navRect = nav.getBoundingClientRect();
     const navOffset = 20;
@@ -41,6 +67,7 @@
   };
 
   const hideNav = () => {
+    if (mobileQuery.matches && mobileOpen) return;
     nav.classList.add("rb-nav--hidden", "is-hidden");
     nav.classList.remove("is-sticky");
   };
@@ -51,32 +78,44 @@
     else nav.classList.remove("is-sticky");
   };
 
-  // -----------------------------
-  // 🔥 Detecta el verdadero contenedor que scrollea
-  // -----------------------------
-  const candidates = [
-    document.scrollingElement,
-    document.documentElement,
-    document.body,
-    document.querySelector("main.events-page"),
-    document.querySelector(".events-page"),
-  ].filter(Boolean);
+  const closeMobileMenu = () => {
+    mobileOpen = false;
+    nav.classList.remove("rb-nav--menu-open");
+    nav.querySelector(".rb-menu-toggle")?.setAttribute("aria-expanded", "false");
+    nav.querySelector(".rb-menu-toggle")?.setAttribute("aria-label", "Abrir menú");
+    document.body.classList.remove("rb-nav-open");
+  };
+
+  const openMobileMenu = () => {
+    mobileOpen = true;
+    nav.classList.add("rb-nav--menu-open");
+    nav.querySelector(".rb-menu-toggle")?.setAttribute("aria-expanded", "true");
+    nav.querySelector(".rb-menu-toggle")?.setAttribute("aria-label", "Cerrar menú");
+    document.body.classList.add("rb-nav-open");
+  };
+
+  const syncMobileMenu = () => {
+    const toggle = ensureMobileToggle();
+    const isMobile = mobileQuery.matches;
+    pill.hidden = false;
+    actions.hidden = false;
+    toggle.hidden = !isMobile;
+    nav.classList.toggle("rb-nav--mobile", isMobile);
+    if (!isMobile) closeMobileMenu();
+  };
+
+  const candidates = [document.scrollingElement, document.documentElement, document.body, document.querySelector("main.events-page"), document.querySelector(".events-page")].filter(Boolean);
 
   const pickScrollContainer = () => {
-    // Escoge el primero que realmente tenga overflow vertical (scrollHeight > clientHeight)
-    // y que en runtime pueda cambiar scrollTop.
     for (const el of candidates) {
       if (el.scrollHeight > el.clientHeight + 2) return el;
     }
-    // fallback: el estándar
     return document.scrollingElement || document.documentElement;
   };
 
   let scroller = pickScrollContainer();
-
   const getScrollTop = () => scroller.scrollTop || 0;
 
-  // Si cambian layouts por responsive, re-evaluamos.
   const refreshScroller = () => {
     const newScroller = pickScrollContainer();
     if (newScroller !== scroller) {
@@ -86,12 +125,8 @@
     }
   };
 
-  // -----------------------------
-  // Scroll logic robusto (trackpad-friendly)
-  // -----------------------------
   const hideAfter = 24;
   const trigger = 18;
-
   let lastY = 0;
   let acc = 0;
   let ticking = false;
@@ -99,24 +134,20 @@
   const update = () => {
     const y = getScrollTop();
     const delta = y - lastY;
-
     acc += delta;
 
     if (y <= 0) {
       acc = 0;
       showNav(0);
       nav.classList.remove("is-sticky");
-    } else {
-      if (acc > trigger && y > hideAfter) {
-        hideNav();
-        acc = 0;
-      } else if (acc < -trigger) {
-        showNav(y);
-        acc = 0;
-      } else {
-        // Mantén sticky cuando ya no estás arriba
-        if (!nav.classList.contains("is-hidden")) showNav(y);
-      }
+    } else if (acc > trigger && y > hideAfter) {
+      hideNav();
+      acc = 0;
+    } else if (acc < -trigger) {
+      showNav(y);
+      acc = 0;
+    } else if (!nav.classList.contains("is-hidden")) {
+      showNav(y);
     }
 
     lastY = y;
@@ -130,48 +161,59 @@
     }
   }
 
-  // -----------------------------
-  // Login button — muestra primer nombre si hay sesión
-  // -----------------------------
   const updateLoginBtn = () => {
-    const btn = nav.querySelector(".rb-login-btn");
-    if (!btn) return;
     const userName = localStorage.getItem("user_name");
     if (userName) {
       const firstName = userName.trim().split(/\s+/)[0];
-      btn.textContent = firstName.toUpperCase();
+      loginBtn.textContent = firstName.toUpperCase();
     } else {
-      btn.textContent = "INICIAR SESIÓN";
+      loginBtn.textContent = "INICIAR SESIÓN";
     }
   };
 
-  // Actualiza el botón si otra pestaña o el flujo OAuth cambia localStorage
   window.addEventListener("storage", (e) => {
     if (e.key === "user_name") updateLoginBtn();
   });
 
-  // -----------------------------
-  // Init
-  // -----------------------------
+  const toggle = ensureMobileToggle();
+  toggle.addEventListener("click", () => {
+    if (mobileOpen) closeMobileMenu();
+    else openMobileMenu();
+  });
+
+  nav.addEventListener("click", (e) => {
+    if (e.target.closest(".rb-item") || e.target.closest(".rb-login-btn")) closeMobileMenu();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!mobileOpen) return;
+    if (nav.contains(e.target)) return;
+    closeMobileMenu();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMobileMenu();
+  });
+
   setActiveLink();
   setNavHeight();
   updateLoginBtn();
+  syncMobileMenu();
   refreshScroller();
 
   lastY = getScrollTop();
   showNav(lastY);
 
-  // IMPORTANT: escuchamos el scroll en el scroller REAL, no en window
   scroller.addEventListener("scroll", onScroll, { passive: true });
 
   window.addEventListener("resize", () => {
     requestAnimationFrame(() => {
       setNavHeight();
       refreshScroller();
+      syncMobileMenu();
     });
   });
 
-  // Extra: por si el navegador dispara wheel/touch sin scroll event confiable
   window.addEventListener("wheel", () => requestAnimationFrame(update), { passive: true });
   window.addEventListener("touchmove", () => requestAnimationFrame(update), { passive: true });
 })();
