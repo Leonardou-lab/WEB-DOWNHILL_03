@@ -231,7 +231,7 @@ body.page-nosotros section {
 }
 
 .data-strip {
-  background: var(--accent);
+ /* background: var(--accent);*/
 }
 
 .data-grid {
