@@ -52,6 +52,15 @@
             <button class="tab" data-cat="master-b" role="tab" aria-selected="false">Master 40</button>
             <button class="tab" data-cat="master-c" role="tab" aria-selected="false">Master 50</button>
         </div>
+        <select class="standings-select" aria-label="Seleccionar categoría">
+            <option value="elite" selected>Elite Varonil</option>
+            <option value="femenil-elite">Elite Femenil</option>
+            <option value="junior">Junior Varonil</option>
+            <option value="infantil">Cadetes</option>
+            <option value="master-a">Master 30</option>
+            <option value="master-b">Master 40</option>
+            <option value="master-c">Master 50</option>
+        </select>
     </section>
 
     <section class="standings-table-wrap">
@@ -136,6 +145,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../assets/js/pages/supabaseClient.js"></script>
     <script src="../assets/js/pages/standingsSupabase.js"></script>
+    <script>
+        // Sync mobile select with desktop tabs
+        (function() {
+            const select = document.querySelector('.standings-select');
+            const tabs = document.querySelectorAll('.standings-tabs .tab');
+            if (!select || !tabs.length) return;
+
+            select.addEventListener('change', function() {
+                const target = document.querySelector('.standings-tabs .tab[data-cat="' + this.value + '"]');
+                if (target) target.click();
+            });
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    select.value = this.dataset.cat;
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
 

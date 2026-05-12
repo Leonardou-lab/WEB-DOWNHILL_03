@@ -50,6 +50,91 @@ body.page-eventos section:not(.events-page) {
   padding-top: 0;
 }
 
+/* ============================================
+   MOBILE: EVENTOS VERTICAL LAYOUT
+   ============================================ */
+@media (max-width: 768px) {
+  /* Stack events in a single column */
+  body.page-eventos .events-screen {
+    grid-template-columns: 1fr;
+  }
+
+  /* Taller cards that feel immersive but allow peeking at next event */
+  body.page-eventos .event-tile {
+    height: min(65vh, 520px);
+  }
+
+  /* Scale title down for full-width mobile cards */
+  body.page-eventos .event-title {
+    font-size: clamp(3rem, 11vw, 5rem);
+  }
+
+  /* Always show CTA on mobile — no hover on touch */
+  body.page-eventos .event-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Comfortable padding inside cards */
+  body.page-eventos .event-content {
+    left: 28px;
+    bottom: 40px;
+  }
+
+  /* Kill the massive 380px void after last events section */
+  body.page-eventos .events-screen:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  /* Panamericanos CTA — center everything on mobile */
+  .panamericanos-cta .cta-content {
+    text-align: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: clamp(70px, 14vh, 120px) 6%;
+  }
+
+  .panamericanos-cta .cta-title {
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .panamericanos-cta .cta-description {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  /* Keep the underline visible on mobile (no hover) */
+  .panamericanos-cta .cta-button::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 400px) {
+  body.page-eventos .event-tile {
+    height: min(60vh, 460px);
+  }
+
+  body.page-eventos .event-title {
+    font-size: clamp(2.6rem, 12vw, 3.4rem);
+  }
+
+  body.page-eventos .event-content {
+    left: 22px;
+    bottom: 32px;
+  }
+
+  .panamericanos-cta .cta-title {
+    font-size: clamp(1.8rem, 7.5vw, 2.2rem);
+  }
+
+  .panamericanos-cta .cta-description {
+    font-size: 0.95rem;
+  }
+}
+
 /* Transition section */
 .events-to-pan-transition {
   height: 20px;

@@ -316,5 +316,9 @@ body.page-panamericanos {
     .pan-story__img {
         height: 320px;
     }
+    /* Massive floating triangles clutter the narrow viewport */
+    .pan-triangles {
+        display: none;
+    }
 }
 

@@ -47,7 +47,9 @@ a {
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
+    min-height: 100dvh;
     background: none;
     background-size: cover;
     background-position: center;
@@ -316,11 +318,53 @@ a {
     .hero-content {
         grid-template-columns: 1fr;
         row-gap: 28px;
-        padding: calc(var(--nav-h) + 24px) 7% 0;
+        padding: calc(var(--nav-h) + 24px) 6% 0;
+        justify-items: center;
+        align-content: center;
+        text-align: center;
+    }
+
+    .hero-copy {
+        align-items: center;
+        text-align: center;
+        max-width: none;
+        gap: 22px;
+    }
+
+    .hero-title {
+        font-size: clamp(4.2rem, 15vw, 6.2rem);
+        line-height: 0.88;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-claim {
+        font-size: clamp(1.15rem, 3.8vw, 1.4rem);
+        letter-spacing: 0.18em;
+        margin-top: 8px;
     }
 
     .hero-cta-btn {
-        padding: 16px 28px;
+        align-self: center;
+        padding: 20px 44px;
+        font-size: 1.1rem;
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: clamp(3.6rem, 14vw, 4.2rem);
+        line-height: 0.9;
+    }
+
+    .hero-claim {
+        font-size: 1rem;
+        letter-spacing: 0.14em;
+    }
+
+    .hero-cta-btn {
+        padding: 18px 36px;
+        font-size: 1rem;
     }
 }
 

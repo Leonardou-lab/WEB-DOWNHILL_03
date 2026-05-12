@@ -115,3 +115,28 @@
     bottom: 28px;
   }
 }
+
+/* ============================================
+   TOUCH DEVICES: colour + tap reactivity
+   ============================================ */
+@media (hover: none) {
+  /* Always show images in full colour — no cursor to hover */
+  .event-tile::before {
+    filter: grayscale(0) contrast(1.06) brightness(1);
+  }
+
+  /* Brief lift + scale when finger presses (tactile feedback) */
+  .event-tile:active::before {
+    transform: scale(1.05);
+  }
+
+  .event-tile:active {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Always reveal the CTA on touch — hover doesn't exist */
+  .event-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
